@@ -1,6 +1,7 @@
 package com.mvc.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mvc.dto.UserDto;
 import com.mvc.model.LoginModel;
 import com.mvc.service.UsetService;
 
@@ -42,7 +44,7 @@ UsetService userService=null;
         System.out.println("hahah");
 
 
-       /* List<UserDto> userInfo = userService.getUserList(loginModel);*/
+        List<UserDto> userInfo = userService.getUserList(loginModel);
 
 
 
