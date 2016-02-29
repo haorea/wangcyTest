@@ -44,8 +44,7 @@ UsetService userService=null;
         System.out.println("hahah");
 
 
-        List<UserDto> userInfo = userService.getUserList(loginModel);
-
+        List<UserDto> userList = userService.getUserList(loginModel);
 
 
         return bulidReturnMap("ok",null);
