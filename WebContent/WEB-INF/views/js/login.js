@@ -28,6 +28,11 @@ define([], function() {
             params["username"] = $("#p001UsernameTxt").val();
             params["password"] = $("#p001UserPasswordTxt").val();
 
+            if ($("#p001UsernameTxt").val() == "" || $("#p001UserPasswordTxt").val() == "") {
+                alert("用户名密码不能为空");
+                return;
+            }
+
             var url = "/" + getContextPath() + "/init";
 
             $.ajax({
@@ -41,7 +46,7 @@ define([], function() {
 
                     if ("ok" == data.code) {
                         window.location.href = "/" + getContextPath() + "/welcome";
-                    }else{
+                    } else {
                         window.location.href = "/" + getContextPath() + "/error";
                     }
                 }
