@@ -41,6 +41,8 @@ define([], function() {
 
                     if ("ok" == data.code) {
                         window.location.href = "/" + getContextPath() + "/welcome";
+                    }else{
+                        window.location.href = "/" + getContextPath() + "/error";
                     }
                 }
             })
