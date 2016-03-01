@@ -28,8 +28,8 @@
   </div>
 
 
-  <div>
-    <div id="p002WelcomeDiv" class="main">
+  <div class="main">
+    <div id="p002WelcomeDiv" >
       <input type="text">
       try
       <button type="button" id="p003BackLoginBtn" value="">backToLogin</button>
