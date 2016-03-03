@@ -9,16 +9,17 @@ require.config({
 
 });
 
-require([ "welcome" ], function(welcome) {
+require([ "welcome" ,"common"], function(welcome,common) {
     $(function() {
         welcome.init();
     });
 });
 
-define([], function() {
+define(["common"], function(common) {
 
     function init() {
         initListener();
+        initMenu();
     }
     ;
 
@@ -27,6 +28,19 @@ define([], function() {
             window.location.href = "/" + getContextPath() + "/login";
         });
     }
+
+    function initMenu() {
+        $(".subMenu a").on("click",subMenuClickHandler);
+    }
+
+    function subMenuClickHandler(e){
+        e.preventDefault();
+
+        var pageName = $(this).attr("data-pagename");
+        common.loadPage(pageName);
+    }
+
+
 
     function getContextPath() {
         var fullPath = window.location.pathname;

@@ -23,18 +23,16 @@
   <div class="left">
     <div class="menu">基本信息</div>
     <div class="subMenu">
-      <a href="javascript:void(0)" data-pagename="userAdd">用户信息登録</a>
+      <a href="javascript:void(0)" data-pagename="userAdd">学生信息登録</a>
     </div>
   </div>
 
 
-  <div class="main">
-    <div id="p002WelcomeDiv" >
+  <div class="main" id="p002WelcomeDiv">
       <input type="text">
       try
       <button type="button" id="p003BackLoginBtn" value="">backToLogin</button>
     </div>
-  </div>
 
 </body>
 </html>
