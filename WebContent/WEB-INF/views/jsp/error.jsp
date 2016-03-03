@@ -8,7 +8,7 @@
 <script src="${baseUrl}js/jquery-2.1.4.min.js"></script>
 <script src="${baseUrl}js/jquery.json-2.4.js"></script>
 <link type="text/css" href="${baseUrl}css/login.css" rel="stylesheet" />
-<script data-main="${baseUrl}js/welcome" src="${baseUrl}js/require.js"></script>
+<script data-main="${baseUrl}js/main" src="${baseUrl}js/require.js"></script>
 <title>SpringMvc</title>
 </head>
 <body>

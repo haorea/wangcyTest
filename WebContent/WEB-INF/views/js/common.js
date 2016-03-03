@@ -1,7 +1,7 @@
 /**
  *
  */
-define([], function() {
+define([ "userAdd" ], function(userAdd) {
 
     function init() {
         loadPage();
@@ -20,6 +20,10 @@ define([], function() {
         }).done(function(htmlContent) {
 
             $("#p002WelcomeDiv").html(htmlContent);
+            if (pagename == "userAdd") {
+
+                userAdd.init();
+            }
 
         })
     }

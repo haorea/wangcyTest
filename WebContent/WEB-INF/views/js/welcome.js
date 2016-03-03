@@ -5,17 +5,7 @@
     init();
 });*/
 
-require.config({
-
-});
-
-require([ "welcome" ,"common"], function(welcome,common) {
-    $(function() {
-        welcome.init();
-    });
-});
-
-define(["common"], function(common) {
+define([ "common", "userAdd" ], function(common, userAdd) {
 
     function init() {
         initListener();
@@ -30,17 +20,15 @@ define(["common"], function(common) {
     }
 
     function initMenu() {
-        $(".subMenu a").on("click",subMenuClickHandler);
+        $(".subMenu a").on("click", subMenuClickHandler);
     }
 
-    function subMenuClickHandler(e){
+    function subMenuClickHandler(e) {
         e.preventDefault();
 
         var pageName = $(this).attr("data-pagename");
         common.loadPage(pageName);
     }
-
-
 
     function getContextPath() {
         var fullPath = window.location.pathname;

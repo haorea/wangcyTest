@@ -38,7 +38,7 @@
         <tr>
           <th></th>
           <td>
-            <button type="button" id="p003UserAddTxt">登录</button>
+            <button type="button" id="p003UserAddBtn">登录</button>
           </td>
         </tr>
       </table>
