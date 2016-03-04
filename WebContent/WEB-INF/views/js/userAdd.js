@@ -19,7 +19,11 @@ define([ "common" ], function(common) {
                 dataType: "json",
                 cache: false,
                 success: function(data) {
-                    alert("登陆成功了")
+
+                    if(data.code=="ok"){
+
+                        alert("登陆成功了,返回查询画面")
+                    }
                 }
             });
 
