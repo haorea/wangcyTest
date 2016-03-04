@@ -7,10 +7,10 @@
 <title>SpringMvc</title>
 </head>
 <body>
-  <div>学生信息登録</div>
+  <div style="padding-top:30px;">学生信息登录</div>
   <div id="p003UserAddDiv">
     <form id="p003UserAddForm">
-      <table id="p003UserAddTable">
+      <table id="p003UserAddTable" style="padding-top:10px;">
         <tr>
           <th>姓名</th>
           <td>
@@ -44,5 +44,9 @@
       </table>
     </form>
   </div>
+
+   <div style="padding-top:30px;">学生信息查询</div>
+ <div id="p013UserSearchTable"></div>
+
 </body>
 </html>

@@ -23,7 +23,7 @@
   <div class="left">
     <div class="menu">基本信息</div>
     <div class="subMenu">
-      <a href="javascript:void(0)" data-pagename="userAdd">学生信息登録</a>
+      <a href="javascript:void(0)" data-pagename="userAdd">学生信息</a>
     </div>
   </div>
 
