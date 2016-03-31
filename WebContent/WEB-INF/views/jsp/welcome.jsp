@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="${baseUrl}js/jquery-2.1.4.min.js"></script>
 <script src="${baseUrl}js/jquery.json-2.4.js"></script>
+<script src="${baseUrl}js/fileUploader.js"></script>
 <link type="text/css" href="${baseUrl}css/top.css" rel="stylesheet" />
 <script data-main="${baseUrl}js/main" src="${baseUrl}js/require.js"></script>
 <title>SpringMvc</title>
