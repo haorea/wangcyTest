@@ -1,10 +1,13 @@
 package com.mvc.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,6 +51,13 @@ public class UserController {
 
        //如果用的是Tomcat服务器，则文件会上传到\\%TOMCAT_HOME%\\webapps\\YourWebProject\\WEB-INF\\upload\\文件夹中
        String realPath = request.getSession().getServletContext().getRealPath("/WEB-INF/upload");
+       //这里不必处理IO流关闭的问题，因为FileUtils.copyInputStreamToFile()方法内部会自动把用到的IO流关掉，我是看它的源码才知道的
+       try {
+        FileUtils.copyInputStreamToFile(file.getInputStream(), new File(realPath, file.getOriginalFilename()));
+    } catch (IOException e) {
+        // TODO 自動生成された catch ブロック
+        e.printStackTrace();
+    }
        System.out.println(realPath);
 
        return "userAdd";
