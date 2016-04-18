@@ -62,6 +62,10 @@ public class UserController {
 
        String fileName = file.getOriginalFilename();
        File targetFile  =new File("C:/Users/wang_changyuan/git/wangcyTest/WebContent/WEB-INF/views/upload",fileName);
+       if(targetFile.exists()){
+           targetFile.delete();
+       }
+
        if(!targetFile.exists()){
            targetFile.mkdirs();
        }
