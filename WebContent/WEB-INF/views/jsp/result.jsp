@@ -11,7 +11,13 @@
 <script data-main="${baseUrl}js/main" src="${baseUrl}js/require.js"></script>
 <title>上传结果</title>  </head>
 <body>
+<div>
 <img alt="" src="${baseUrl}upload/${fileUrl}" />
+</div>
 
+<div>
+<input type="button" id="p004RefeshBtn" value="刷新"/>
+ <button type="button" id="p004BackLoginBtn" value="">backToLogin</button>
+</div>
 </body>
 </html>

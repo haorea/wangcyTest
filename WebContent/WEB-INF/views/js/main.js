@@ -3,9 +3,10 @@ require.config({
     }
 });
 
-require(["welcome" ,"userAdd"], function(welcome,userAdd) {
+require(["welcome" ,"userAdd","result"], function(welcome,userAdd,result) {
     $(function() {
         welcome.init();
         userAdd.init();
+        result.init();
     });
 });
