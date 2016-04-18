@@ -41,7 +41,7 @@ public class UserController {
         return bulidReturnMap("ok", null);
 
     }
-
+    //参考url：http://blog.csdn.net/cheung1021/article/details/7084673
     @RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
     public String fileUpload(StudentModel studentModel, @RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, ModelMap model) {
         System.out.println(file.getOriginalFilename());
