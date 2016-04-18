@@ -1,4 +1,4 @@
-define([ "common" ], function(common) {
+define([ "common", "userAdd", "welcome" ], function(common, userAdd, welcome) {
 
     function init() {
         initParams();
@@ -10,9 +10,11 @@ define([ "common" ], function(common) {
         })
     }
 
-    $("#p004BackLoginBtn").on("click", function() {
+    $("#p004BackLoginBtn").on("click", subMenuClickHandler);
+
+    function subMenuClickHandler() {
         window.location.href = "/" + getContextPath() + "/welcome";
-    })
+    }
 
     function getContextPath() {
         var fullPath = window.location.pathname;

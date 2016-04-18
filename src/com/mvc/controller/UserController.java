@@ -42,49 +42,44 @@ public class UserController {
 
     }
 
-   @RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
-    public String fileUpload(StudentModel studentModel, @RequestParam(value = "file", required = false)MultipartFile file,HttpServletRequest request,ModelMap model){
-       System.out.println(file.getOriginalFilename());
-       System.out.println(file);
-       System.out.println(file.getContentType());
-       System.out.println(file.getSize());
+    @RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
+    public String fileUpload(StudentModel studentModel, @RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, ModelMap model) {
+        System.out.println(file.getOriginalFilename());
+        System.out.println(file);
+        System.out.println(file.getContentType());
+        System.out.println(file.getSize());
 
+        // 如果用的是Tomcat服务器，则文件会上传到\\%TOMCAT_HOME%\\webapps\\YourWebProject\\WEB-INF\\upload\\文件夹中
+        String realPath = request.getSession().getServletContext().getRealPath("/WEB-INF/upload");
+        // 这里不必处理IO流关闭的问题，因为FileUtils.copyInputStreamToFile()方法内部会自动把用到的IO流关掉，我是看它的源码才知道的
+        /*
+         * try { FileUtils.copyInputStreamToFile(file.getInputStream(), new File(realPath, file.getOriginalFilename()));
+         * } catch (IOException e) { // TODO 自動生成された catch ブロック e.printStackTrace(); }
+         */
 
-       //如果用的是Tomcat服务器，则文件会上传到\\%TOMCAT_HOME%\\webapps\\YourWebProject\\WEB-INF\\upload\\文件夹中
-       String realPath = request.getSession().getServletContext().getRealPath("/WEB-INF/upload");
-       //这里不必处理IO流关闭的问题，因为FileUtils.copyInputStreamToFile()方法内部会自动把用到的IO流关掉，我是看它的源码才知道的
-      /* try {
-        FileUtils.copyInputStreamToFile(file.getInputStream(), new File(realPath, file.getOriginalFilename()));
-    } catch (IOException e) {
-        // TODO 自動生成された catch ブロック
-        e.printStackTrace();
-    }*/
+        String fileName = file.getOriginalFilename();
+        File targetFile = new File("C:/Users/wang_changyuan/git/wangcyTest/WebContent/WEB-INF/views/upload", fileName);
+        if (targetFile.exists()) {
+            targetFile.delete();
+        }
 
-       String fileName = file.getOriginalFilename();
-       File targetFile  =new File("C:/Users/wang_changyuan/git/wangcyTest/WebContent/WEB-INF/views/upload",fileName);
-       if(targetFile.exists()){
-           targetFile.delete();
-       }
+        if (!targetFile.exists()) {
+            targetFile.mkdirs();
+        }
 
-       if(!targetFile.exists()){
-           targetFile.mkdirs();
-       }
+        // 保存
+        try {
+            file.transferTo(targetFile);
+        } catch (IllegalStateException | IOException e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("fileName", fileName);
+        System.out.println(request.getContextPath() + "upload/" + fileName);
+        System.out.println(realPath);
 
-       //保存
-       try {
-        file.transferTo(targetFile);
-    } catch (IllegalStateException | IOException e) {
-        e.printStackTrace();
-    }
-       model.addAttribute("fileUrl",fileName);
-       System.out.println(request.getContextPath()+"upload/"+fileName);
-       System.out.println(realPath);
-
-       return "result";
+        return "result";
 
     }
-
-
 
     public Map<String, Object> bulidReturnMap(String code, Object result) {
 

@@ -12,7 +12,9 @@
 <title>上传结果</title>  </head>
 <body>
 <div>
-<img alt="" src="${baseUrl}upload/${fileUrl}" />
+<label>上传文件之后，刷新一下工程目录，然后再刷新一下页面，就可以显示出来最新的上传的图片了</label>
+
+<img alt="" src="${baseUrl}upload/${fileName}" />
 </div>
 
 <div>
