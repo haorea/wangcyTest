@@ -104,6 +104,7 @@
 	<mvc:resources mapping="/js/**" location="/WEB-INF/views/js/" />
 	<mvc:resources mapping="/css/**" location="/WEB-INF/views/css/" />
 	<mvc:resources mapping="/images/**" location="/WEB-INF/views/images/" />
+	<mvc:resources mapping="/upload/**" location="/WEB-INF/views/upload/" />
 
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
