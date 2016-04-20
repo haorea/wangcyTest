@@ -115,7 +115,7 @@ public class UserController {
             // 读取文件
             reader = new FileInputStream(aaPath);
             // 写入浏览器的输出流
-            fileOutputStream = new FileOutputStream("c:\\Users\\wang_changyuan\\"+studentModel.getFileName());
+            fileOutputStream = new FileOutputStream("C:\\Users\\wang_changyuan\\upload\\"+studentModel.getFileName());
             // fileOutputStream = response.getOutputStream();
             while ((len = reader.read(bytes)) > 0) {
                 fileOutputStream.write(bytes, 0, len);
