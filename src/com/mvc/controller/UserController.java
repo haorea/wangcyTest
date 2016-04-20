@@ -86,7 +86,7 @@ public class UserController {
         return "result";
 
     }
-
+   /* 文件下载到 C:\\Users\\wang_changyuan\\upload\\*/
     @RequestMapping(value = "/download", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> download(@RequestBody StudentModel studentModel, HttpServletResponse response, HttpServletRequest request) throws IOException {
