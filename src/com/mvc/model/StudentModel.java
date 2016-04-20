@@ -8,6 +8,7 @@ public class StudentModel {
     private String score;
     private String realPath;
     private String originalFilename;
+    private String fileName;
 
     public String getUsername() {
         return username;
@@ -55,6 +56,14 @@ public class StudentModel {
 
     public void setOriginalFilename(String originalFilename) {
         this.originalFilename = originalFilename;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
 }

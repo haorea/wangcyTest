@@ -1,11 +1,16 @@
 package com.mvc.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,7 +46,8 @@ public class UserController {
         return bulidReturnMap("ok", null);
 
     }
-    //参考url：http://blog.csdn.net/cheung1021/article/details/7084673
+
+    // 参考url：http://blog.csdn.net/cheung1021/article/details/7084673
     @RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
     public String fileUpload(StudentModel studentModel, @RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, ModelMap model) {
         System.out.println(file.getOriginalFilename());
@@ -79,6 +85,55 @@ public class UserController {
 
         return "result";
 
+    }
+
+    @RequestMapping(value = "/download", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> download(@RequestBody StudentModel studentModel, HttpServletResponse response, HttpServletRequest request) throws IOException {
+
+        response.setContentType("text/html;charset=utf-8");
+        request.setCharacterEncoding("UTF-8");
+
+        String path = "C:/Users/wang_changyuan/git/wangcyTest/WebContent/WEB-INF/views/upload/";
+        String downLoadPath = path + studentModel.getFileName();
+        System.out.println(downLoadPath);
+        // OutputStream os= new FileOutputStream();
+
+        /*
+         * InputStream is = new FileInputStream(downLoadPath); OutputStream os = response.getOutputStream();
+         * System.out.println(os); // 写文件 int b = is.read(); while (b != -1) { os.write(b); } is.close(); os.close();
+         */
+        String aaa = request.getSession().getServletContext().getRealPath("/WEB-INF/views/upload");
+        String aaPath = aaa + studentModel.getFileName();
+        response.setHeader("content-disposition", "attachment;fileName=" + URLEncoder.encode(studentModel.getFileName(), "UTF-8"));
+        InputStream reader = null;
+        // OutputStream out = null;
+        byte[] bytes = new byte[1024];
+        int len = 0;
+        FileOutputStream fileOutputStream = null;
+        try {
+            // 读取文件
+            reader = new FileInputStream(aaPath);
+            // 写入浏览器的输出流
+            fileOutputStream = new FileOutputStream("c:\\Users\\wang_changyuan\\"+studentModel.getFileName());
+            // fileOutputStream = response.getOutputStream();
+            while ((len = reader.read(bytes)) > 0) {
+                fileOutputStream.write(bytes, 0, len);
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                reader.close();
+
+            }
+            if (fileOutputStream != null) {
+                fileOutputStream.close();
+            }
+        }
+        System.out.println("123");
+        return bulidReturnMap("ok", null);
     }
 
     public Map<String, Object> bulidReturnMap(String code, Object result) {
