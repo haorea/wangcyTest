@@ -38,6 +38,11 @@ public class loginController {
         return "error";
     }
 
+    @RequestMapping(value = "/ssq")
+    public String ssqInit() {
+        return "ssq";
+    }
+
     @RequestMapping(value = "/init", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> init(@RequestBody LoginModel loginModel, HttpServletRequest request) {

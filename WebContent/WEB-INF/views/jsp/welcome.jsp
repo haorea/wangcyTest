@@ -25,14 +25,18 @@
     <div class="subMenu">
       <a href="javascript:void(0)" data-pagename="userAdd">学生信息</a>
     </div>
+    <div class="menu">双色球</div>
+    <div class="subMenu">
+      <a href="javascript:void(0)" data-pagename="ssq">双色球</a>
+    </div>
   </div>
 
 
   <div class="main" id="p002WelcomeDiv">
-      <input type="text">
-      try
-      <button type="button" id="p003BackLoginBtn" value="">backToLogin</button>
-    </div>
+    <input type="text">
+    try
+    <button type="button" id="p003BackLoginBtn" value="">backToLogin</button>
+  </div>
 
 </body>
 </html>

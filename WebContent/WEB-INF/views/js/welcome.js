@@ -5,7 +5,7 @@
     init();
 });*/
 
-define([ "common", "userAdd" ], function(common, userAdd) {
+define([ "common", "userAdd","ssq"], function(common, userAdd,ssq) {
 
     function init() {
         initListener();
@@ -28,6 +28,7 @@ define([ "common", "userAdd" ], function(common, userAdd) {
 
         var pageName = $(this).attr("data-pagename");
         common.loadPage(pageName);
+
     }
 
     function getContextPath() {

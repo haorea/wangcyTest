@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class test {
+import org.springframework.stereotype.Controller;
 
+
+@Controller
+public class SsqTest {
+
+    // 使用之前把文件删除(C:\pleiades\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp4\wtpwebapps\wangcyTest\WEB-INF\classes\com\mvc\controller\test.class)
     public static void main(String[] args) {
 
         /*

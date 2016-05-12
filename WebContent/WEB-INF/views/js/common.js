@@ -1,7 +1,7 @@
 /**
  *
  */
-define([ "userAdd" ], function(userAdd) {
+define([ "userAdd","ssq"], function(userAdd,ssq) {
 
     function init() {
         loadPage();
@@ -23,6 +23,10 @@ define([ "userAdd" ], function(userAdd) {
             if (pagename == "userAdd") {
 
                 userAdd.init();
+            }
+
+            if (pagename == "ssq") {
+                ssq.init();
             }
 
         })
