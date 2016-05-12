@@ -9,11 +9,11 @@ define([ "common", "userAdd", "welcome" ], function(common, userAdd, welcome) {
         var redBallListResult = new Array();
         var redBallList = new Array();
         while (redBallList.length < 6) {
-            var namber = 1 + Math.random() * (33);
-            var namberResult = Math.floor(namber) < 10 ? "0" + Math.floor(namber) : Math.floor(namber);
+            var number = 1 + Math.random() * (33);
+            var numberResult = Math.floor(number) < 10 ? "0" + Math.floor(number) : Math.floor(number);
             var blueBall = 1 + Math.random() * (16);
-            if (redBallList.indexOf(namberResult) == -1) {
-                redBallList.push(namberResult);
+            if (redBallList.indexOf(numberResult) == -1) {
+                redBallList.push(numberResult);
             }
         }
 
