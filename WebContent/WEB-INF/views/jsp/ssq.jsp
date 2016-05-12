@@ -14,7 +14,7 @@
   <div>
     <label>红球</label>
     <div id="redBall"></div>
-    <label>篮球</label>
+    <label>蓝球</label>
     <div id="blueBall"></div>
   </div>
 </body>
