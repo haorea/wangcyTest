@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="http://www.w3school.com.cn/jquery/jquery-1.11.1.min.js"></script>
+	<script>
+
+		$(function(){
+
+			initListener();		
+
+		});
+
+		function getNumber(){
+
+			var redBallListResult = new Array();
+			var redBallList= new Array();
+			while(redBallList.length<6){
+				var namber = 1+Math.random()*(33);
+				var namberResult =Math.floor(namber)<10?"0"+Math.floor(namber):Math.floor(namber);
+				var blueBall = 1+Math.random()*(16);
+				if(redBallList.indexOf(namberResult) == -1){
+					redBallList.push(namberResult);
+				}
+			}
+
+			for(var i = 0;i<redBallList.length;i++){
+				var redBallItem=Math.floor(redBallList[i]);
+				redBallListResult.push((redBallItem<10 ?"0"+redBallItem:redBallItem) +" ");
+			}
+
+			redBallListResult.sort();
+			
+			$("#redBall").text(redBallListResult);
+			var blueBallResult =Math.floor(blueBall);
+			$("#blueBall").text(blueBallResult<10?"0"+blueBallResult:blueBallResult);
+		}
+
+		function initListener(){
+			$("#click").on("click",function(){
+				getNumber();
+			});
+		}
+
+
+	</script>
+
+	<title>双色球摇奖</title>
+</head>
+<body>
+
+	<input type="button" id="click" value="点击摇双色球" />
+	<div>
+		<label>红球</label>
+		<div id="redBall"></div>
+		<label>篮球</label>
+		<div id="blueBall"></div>
+	</div>
+</body>
+</html>
