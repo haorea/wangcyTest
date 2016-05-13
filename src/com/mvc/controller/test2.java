@@ -41,7 +41,6 @@ public class test2 {
 
             System.out.println("BLUE BALL：" + (blueBall < 10 ? "0" + blueBall : blueBall));
             redBallList.clear();// 清空选中的球
-
         }
 
         System.out.println("------------------------------------------");
