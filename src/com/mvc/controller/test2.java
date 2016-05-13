@@ -11,12 +11,16 @@ public class test2 {
 
         List<Integer> redBallList = new ArrayList<Integer>();
 
+        // 定义红球的数组，初期化都是0
         Integer redBallArry[] = new Integer[]{
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0};
-        Integer BlueBallArry[] = new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        // Integer BlueBallArry[] = new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+        // 初期化篮球数组，只定义长度，所以每个参数初期化是null
+        Integer BlueBallArry[] = new Integer[16];
 
         System.out.println(redBallArry.length);
         for (int i = 0; i < 10000; i++) {
@@ -37,7 +41,13 @@ public class test2 {
             });
             System.out.println();
             int blueBall = (int)(1 + Math.random() * (16));
-            BlueBallArry[blueBall - 1] += 1;
+
+            if (BlueBallArry[blueBall - 1] == null) {
+                BlueBallArry[blueBall - 1] = 1;
+            } else {
+                BlueBallArry[blueBall - 1] += 1;
+
+            }
 
             System.out.println("BLUE BALL：" + (blueBall < 10 ? "0" + blueBall : blueBall));
             redBallList.clear();// 清空选中的球
