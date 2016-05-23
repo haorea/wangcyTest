@@ -60,7 +60,7 @@ public class fileReader {
             buffReader.close();
             reader.close();
 
-            Writer write =new FileWriter(outFile);
+            Writer write = new FileWriter(outFile);
             BufferedWriter buffWriter = new BufferedWriter(write);
             buffWriter.write(stringBuffer.toString());
 
@@ -72,9 +72,6 @@ public class fileReader {
         } catch (IOException e) {
             System.out.println("文件读取错误：" + e.getMessage());
         }
-
-
-
 
     }
 
