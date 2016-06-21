@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="${baseUrl}js/jquery.validate.js" type="text/JavaScript"></script>
 <script src="${baseUrl}js/jquery.validate.min.js" type="text/JavaScript"></script>
+<link type="text/css" href="${baseUrl}css/common.css" rel="stylesheet" />
 <title>SpringMvc</title>
 
 </head>
@@ -50,9 +51,6 @@
       </table>
     </form>
   </div>
-  <div style="padding:10px;">
-    <div id="p003StudentTable"></div>
-    </div>
 
   <form id="p003UserUploadForm" enctype="multipart/form-data" action="<%=request.getContextPath()%>/fileUpload"
     method="POST">
@@ -77,7 +75,7 @@
   </form>
 
   <div style="padding-top: 30px;">学生信息查询</div>
-  <div id="p013UserSearchTable"></div>
+    <div id="p003StudentTable" style="width:430px;"></div>
 
 </body>
 </html>

@@ -1,5 +1,8 @@
 /* userAddcss */
+.error {
+  color: red;
+}
 
-.error{
-  color:red;
+.col-username, .col-gender, .col-age, .col-score {
+  width: 100px;
 }
