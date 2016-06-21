@@ -44,6 +44,7 @@
           <td>
             <button type="button" id="p003UserAddBtn">登录</button>
              <button type="button" id="p003StudentSearchBtn">查询</button>
+              <button type="button" id="p003ClearBtn">Clear</button>
           </td>
         </tr>
       </table>

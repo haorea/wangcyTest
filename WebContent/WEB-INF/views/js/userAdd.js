@@ -69,13 +69,15 @@ define([ "common" ], function(common) {
                         var studentDtoList = data.result.studentDtoList;
                         createTable(studentDtoList);
                     }
+                    $("#p003UserNameTxt").val("");
+                    $("#p003GenderTxt").val("");
+                    $("#p003AgeTxt").val("");
+                    $("#p003ScoreTxt").val("");
                 }
             });
         });
 
-
-
-        $("#p003StudentSearchBtn").on("click", function(){
+        $("#p003StudentSearchBtn").on("click", function() {
             var params = {};
             $.ajax({
                 url: "/" + getContextPath() + "/studentList",
@@ -95,6 +97,14 @@ define([ "common" ], function(common) {
             });
 
         });
+
+        $("#p003ClearBtn").on("click", function() {
+            $("#p003UserNameTxt").val("");
+            $("#p003GenderTxt").val("");
+            $("#p003AgeTxt").val("");
+            $("#p003ScoreTxt").val("");
+        });
+
     }
 
     function createTable(studentDtoList) {
