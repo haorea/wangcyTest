@@ -30,8 +30,6 @@ public class UsetServiceImpl implements UsetService {
 
         userDao.insert(studentModel);
 
-
-
     }
 
 }

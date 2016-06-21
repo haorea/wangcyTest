@@ -4,7 +4,8 @@ define([ "common" ], function(common) {
         initFocus();
         initFormValidate();
         initListener();
-    };
+    }
+    ;
 
     function initFocus() {
         $("#p003UserNameTxt").first().focus();
@@ -65,10 +66,53 @@ define([ "common" ], function(common) {
 
                     if (data.code == "ok") {
 
-                        alert("登陆成功了,返回查询画面")
+                        var studentDtoList = data.result.studentDtoList;
+                        createTable(studentDtoList);
                     }
                 }
             });
+        });
+
+
+
+        $("#p003StudentSearchBtn").on("click", function(){
+            var params = {};
+            $.ajax({
+                url: "/" + getContextPath() + "/studentList",
+                type: 'POST',
+                data: JSON.stringify(params),
+                contentType: "application/json",
+                dataType: "json",
+                cache: false,
+                success: function(data) {
+
+                    if (data.code == "ok") {
+
+                        var studentDtoList = data.result.studentDtoList;
+                        createTable(studentDtoList);
+                    }
+                }
+            });
+
+        });
+    }
+
+    function createTable(studentDtoList) {
+        $("#p003StudentTable").datatable({
+            data: studentDtoList,
+            columns: [ {
+                name: "username",
+                text: "用户名"
+            }, {
+                name: "gender",
+                text: "性别"
+            }, {
+                name: "age",
+                text: "年龄"
+            }, {
+                name: "score",
+                text: "成绩"
+            } ]
         });
     }
 

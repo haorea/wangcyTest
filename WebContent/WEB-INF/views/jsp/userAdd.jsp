@@ -43,11 +43,15 @@
           <th></th>
           <td>
             <button type="button" id="p003UserAddBtn">登录</button>
+             <button type="button" id="p003StudentSearchBtn">查询</button>
           </td>
         </tr>
       </table>
     </form>
   </div>
+  <div style="padding:10px;">
+    <div id="p003StudentTable"></div>
+    </div>
 
   <form id="p003UserUploadForm" enctype="multipart/form-data" action="<%=request.getContextPath()%>/fileUpload"
     method="POST">

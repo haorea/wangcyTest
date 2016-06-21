@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +24,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mvc.dto.StudentDto;
 import com.mvc.model.StudentModel;
+import com.mvc.service.StudentService;
 import com.mvc.service.UsetService;
 
 @Controller
@@ -31,11 +34,29 @@ public class UserController {
 
     @Autowired
     UsetService userService = null;
+    @Autowired
+    StudentService studentService = null;
 
     @RequestMapping(value = "/userAdd")
     public String userAdd() {
         return "userAdd";
     }
+
+    @RequestMapping(value = "/studentList", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> studentList(@RequestBody StudentModel studentModel) {
+        System.out.println("hahah");
+
+        List<StudentDto> studentDtoList=studentService.selectStudent();
+
+        Map<String,Object> resultMap =new HashMap<String, Object>();
+        resultMap.put("studentDtoList", studentDtoList);
+
+        return bulidReturnMap("ok", resultMap);
+
+    }
+
+
 
     @RequestMapping(value = "/userAddInit", method = RequestMethod.POST)
     @ResponseBody
@@ -43,8 +64,12 @@ public class UserController {
         System.out.println("hahah");
 
         userService.addStudent(studentModel);
+        List<StudentDto> studentDtoList=studentService.selectStudent();
 
-        return bulidReturnMap("ok", null);
+        Map<String,Object> resultMap =new HashMap<String, Object>();
+        resultMap.put("studentDtoList", studentDtoList);
+
+        return bulidReturnMap("ok", resultMap);
 
     }
 
