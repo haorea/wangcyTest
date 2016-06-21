@@ -4,7 +4,11 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="${baseUrl}js/jquery.validate.js" type="text/JavaScript"></script>
+<script src="${baseUrl}js/jquery.validate.min.js" type="text/JavaScript"></script>
 <title>SpringMvc</title>
+
 </head>
 <body>
   <div style="padding-top: 30px;">学生信息登录</div>
