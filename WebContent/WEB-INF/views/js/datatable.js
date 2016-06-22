@@ -338,7 +338,21 @@ define([], function() {
                 // call row fn callback method
                 rowFn && rowFn(rowValue, trDom);
             }
+            if(rowClickFn){
+                trDom.on("mousedown", function(e) {
+                    rowMousedownX = e.pageX;
+                    rowMousedownY = e.pageY;
+                });
 
+                trDom.on("click", "", {rowValue: rowValue, trDom: trDom}, function(e) {
+                    // マウスが動く場合、クリック動作をしない
+                    if(rowMousedownX != e.pageX || rowMousedownY != e.pageY){
+                        return false;
+                    }
+
+                    rowClickFn(e.data.rowValue, e.data.trDom);
+                });
+            }
         }
         body.appendTo(tableDom);
         tableDom.appendTo(bodyDom.find(".dtBody"));

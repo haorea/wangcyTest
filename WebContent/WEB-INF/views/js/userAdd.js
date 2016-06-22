@@ -128,12 +128,14 @@ define([ "common" ], function(common) {
                 name: "delete",
                 text: "删除",
                 fn: deleteStudent
-            } ]
+            } ],
+            rowClickFn: rowClickCallback
         });
     }
     // 行点击
     function rowClickCallback(rowValue, trDom) {
         var studentId = rowValue.studentId;
+        alert("行点击事件")
     }
 
     // 删除
