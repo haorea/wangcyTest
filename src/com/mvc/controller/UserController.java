@@ -73,6 +73,16 @@ public class UserController {
 
     }
 
+    @RequestMapping(value = "/studentDel", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> studentDel(@RequestBody StudentModel studentModel) {
+        System.out.println("hahah");
+       studentService.deleteStudent(studentModel.getStudentId());
+
+        return bulidReturnMap("ok", null);
+
+    }
+
     // 参考url：http://blog.csdn.net/cheung1021/article/details/7084673
     @RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
     public String fileUpload(StudentModel studentModel, @RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, ModelMap model) {

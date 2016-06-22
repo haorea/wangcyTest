@@ -18,5 +18,19 @@ public class StudentServiceImpl implements StudentService {
     public List<StudentDto> selectStudent() {
         return studentDao.selectByCondition();
     }
+    /**
+     *
+     */
+    @Override
+    public void deleteStudent(int student) {
+         studentDao.delete(student);
+    }
+    /**
+     * 编辑
+     */
+    @Override
+    public List<StudentDto> selectStudentById(int studentId) {
+        return studentDao.selectById(studentId);
+    }
 
 }

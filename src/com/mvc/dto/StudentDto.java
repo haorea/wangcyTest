@@ -2,6 +2,7 @@ package com.mvc.dto;
 
 public class StudentDto {
 
+    private int studentId;
     private String username;
     private String age;
     private String score;
@@ -37,6 +38,14 @@ public class StudentDto {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 
 }

@@ -6,10 +6,11 @@ define([ "common" ], function(common) {
         initListener();
     }
     ;
-
+    // 焦点
     function initFocus() {
         $("#p003UserNameTxt").first().focus();
     }
+    // 校验
     function initFormValidate() {
         $("#p003UserAddForm").validate({
             rules: {
@@ -44,6 +45,7 @@ define([ "common" ], function(common) {
     }
 
     function initListener() {
+        // 登录按钮
         $("#p003UserAddBtn").on("click", function() {
 
             var params = {};
@@ -76,7 +78,7 @@ define([ "common" ], function(common) {
                 }
             });
         });
-
+        // 检索按钮
         $("#p003StudentSearchBtn").on("click", function() {
             var params = {};
             $.ajax({
@@ -97,7 +99,7 @@ define([ "common" ], function(common) {
             });
 
         });
-
+        // 清除按钮
         $("#p003ClearBtn").on("click", function() {
             $("#p003UserNameTxt").val("");
             $("#p003GenderTxt").val("");
@@ -106,7 +108,7 @@ define([ "common" ], function(common) {
         });
 
     }
-
+    // 创建一览
     function createTable(studentDtoList) {
         $("#p003StudentTable").datatable({
             data: studentDtoList,
@@ -122,8 +124,58 @@ define([ "common" ], function(common) {
             }, {
                 name: "score",
                 text: "成绩"
+            }, {
+                name: "delete",
+                text: "删除",
+                fn: deleteStudent
             } ]
         });
+    }
+    // 行点击
+    function rowClickCallback(rowValue, trDom) {
+        var studentId = rowValue.studentId;
+    }
+
+    // 删除
+    function deleteStudent(value, rowValue, tdDom) {
+        var deleteBtn = $("<input type='button' id='deleteBtn' value='删除' />");
+        var studentId = rowValue.studentId;
+        deleteBtn.appendTo(tdDom);
+
+        deleteBtn.off("click").on("click", function() {
+            $.ajax({
+                url: "/" + getContextPath() + "/studentDel",
+                type: "POST",
+                data: JSON.stringify({
+                    "studentId": studentId
+                }),
+                contentType: "application/json",
+                dataType: "json",
+                cache: false,
+                success: function(data) {
+
+                    var params = {};
+                    $.ajax({
+                        url: "/" + getContextPath() + "/studentList",
+                        type: 'POST',
+                        data: JSON.stringify(params),
+                        contentType: "application/json",
+                        dataType: "json",
+                        cache: false,
+                        success: function(data) {
+
+                            if (data.code == "ok") {
+                                var studentDtoList = data.result.studentDtoList;
+                                createTable(studentDtoList);
+                                alert("删除成功 !!!");
+                            }
+                        }
+                    });
+
+                }
+            });
+        });
+
     }
 
     function getContextPath() {

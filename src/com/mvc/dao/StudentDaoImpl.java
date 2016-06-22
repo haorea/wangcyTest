@@ -17,10 +17,15 @@ public class StudentDaoImpl implements StudentDao {
     @Autowired
     private JdbcTemplate JdbcTemelate = null;
 
+    /**
+     * 检索
+     */
+    @Override
     public List<StudentDto> selectByCondition() {
 
         final StringBuilder sql = new StringBuilder();
         sql.append(" SELECT");
+        sql.append(" student_id, ");
         sql.append(" username, ");
         sql.append(" age, ");
         sql.append(" score, ");
@@ -37,12 +42,43 @@ public class StudentDaoImpl implements StudentDao {
         return studentList;
     }
 
+    /**
+     * 编辑
+     *
+     * @param studentId
+     * @return
+     */
+    @Override
+    public List<StudentDto> selectById(int studentId) {
+
+        final StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT");
+        sql.append(" student_id, ");
+        sql.append(" username, ");
+        sql.append(" age, ");
+        sql.append(" score, ");
+        sql.append(" gender ");
+        sql.append(" FROM");
+        sql.append("  student");
+        sql.append(" WHERE");
+        sql.append(" 1=1 ");
+        sql.append(" AND ");
+        sql.append(" student_id=? ");
+
+        Object[] paramer = new Object[]{studentId};
+
+        List<StudentDto> studentList = JdbcTemelate.query(sql.toString(), paramer, new StudentRowMapper());
+
+        return studentList;
+    }
+
     protected class StudentRowMapper implements RowMapper<StudentDto> {
 
         @Override
         public StudentDto mapRow(ResultSet rs, int paramInt) throws SQLException {
 
             StudentDto studentDto = new StudentDto();
+            studentDto.setStudentId(rs.getInt("student_id"));
             studentDto.setUsername(rs.getString("username"));
             studentDto.setAge(rs.getString("age"));
             studentDto.setScore(rs.getString("score"));
@@ -51,4 +87,40 @@ public class StudentDaoImpl implements StudentDao {
             return studentDto;
         }
     }
+
+    /**
+     * 删除
+     */
+    @Override
+    public void delete(int studentId) {
+        final StringBuilder sql = new StringBuilder();
+        sql.append(" DELETE");
+        sql.append(" FROM");
+        sql.append("  student");
+        sql.append(" WHERE");
+        sql.append(" 1=1 ");
+        sql.append(" AND ");
+        sql.append(" student_id=? ");
+
+        Object[] paramer = new Object[]{studentId};
+        JdbcTemelate.update(sql.toString(), paramer);
+    }
+
+    // /**
+    // * 更新
+    // */
+    // public void update(int studentId) {
+    // final StringBuilder sql = new StringBuilder();
+    // sql.append(" UPDATE student");
+    // sql.append(" SET");
+    // sql.append(" username=？, ");
+    // sql.append(" age=？, ");
+    // sql.append(" score=？, ");
+    // sql.append(" gender=？ ");
+    // sql.append(" WHERE");
+    // sql.append(" student_id=? ");
+    //
+    // Object[] paramer=new Object[]{studentId};
+    // JdbcTemelate.update(sql.toString(), paramer);
+    // }
 }

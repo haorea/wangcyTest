@@ -3,6 +3,6 @@
   color: red;
 }
 
-.col-username, .col-gender, .col-age, .col-score {
+.col-username, .col-gender, .col-age, .col-score, .col-delete {
   width: 100px;
 }

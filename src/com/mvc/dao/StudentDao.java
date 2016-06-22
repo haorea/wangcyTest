@@ -9,5 +9,7 @@ public interface StudentDao {
 
 
     public List<StudentDto> selectByCondition();
+    public void delete(int studentId);
+    public List<StudentDto> selectById(int studentId);
 
 }

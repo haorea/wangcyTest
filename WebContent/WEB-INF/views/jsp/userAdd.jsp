@@ -68,14 +68,14 @@
       </tr>
       <tr>
         <td>
-          <input type="submit" value="添加新用户" />
+          <input type="submit" value="上传图片" />
         </td>
       </tr>
     </table>
   </form>
 
   <div style="padding-top: 30px;">学生信息查询</div>
-    <div id="p003StudentTable" style="width:430px;"></div>
+    <div id="p003StudentTable" style="width:500px;"></div>
 
 </body>
 </html>
