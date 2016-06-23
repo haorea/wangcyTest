@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mvc.dao.StudentDao;
 import com.mvc.dto.StudentDto;
+import com.mvc.model.StudentModel;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -19,13 +20,15 @@ public class StudentServiceImpl implements StudentService {
     public List<StudentDto> selectStudent() {
         return studentDao.selectByCondition();
     }
+
     /**
      *
      */
     @Override
     public void deleteStudent(int student) {
-         studentDao.delete(student);
+        studentDao.delete(student);
     }
+
     /**
      * 编辑
      */
@@ -33,17 +36,36 @@ public class StudentServiceImpl implements StudentService {
     public List<StudentDto> getDisplayById(int studentId) {
         return studentDao.selectById(studentId);
     }
+
     @Override
     public Optional<StudentDto> getDisplayById1(int studentId) {
-        StudentDto studentDto=null;
+        StudentDto studentDto = null;
 
-        List<StudentDto> studentEditList= studentDao.selectById(studentId);
-        if(studentEditList.size()==0){
-            studentDto=null;
-        }else {
+        List<StudentDto> studentEditList = studentDao.selectById(studentId);
+        if (studentEditList.size() == 0) {
+            studentDto = null;
+        } else {
             studentDto = studentEditList.get(0);
         }
         return Optional.ofNullable(studentDto);
+    }
+
+    /**
+     * 新增student
+     */
+    @Override
+    public void addStudent(StudentModel studentModel) {
+
+        studentDao.insert(studentModel);
+
+    }
+
+    /**
+     * 更新student
+     */
+    @Override
+    public void updateStudent(StudentModel studentModel) {
+        studentDao.update(studentModel);
     }
 
 }

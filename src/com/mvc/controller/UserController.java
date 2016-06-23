@@ -42,6 +42,12 @@ public class UserController {
         return "userAdd";
     }
 
+    /**
+     * student一览
+     *
+     * @param studentModel
+     * @return
+     */
     @RequestMapping(value = "/studentList", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> studentList(@RequestBody StudentModel studentModel) {
@@ -56,12 +62,17 @@ public class UserController {
 
     }
 
+    /**
+     * 新增student
+     *
+     * @param studentModel
+     * @return
+     */
     @RequestMapping(value = "/userAddInit", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> userAddInit(@RequestBody StudentModel studentModel) {
-        System.out.println("hahah");
 
-        userService.addStudent(studentModel);
+        studentService.addStudent(studentModel);
         List<StudentDto> studentDtoList = studentService.selectStudent();
 
         Map<String, Object> resultMap = new HashMap<String, Object>();
@@ -71,34 +82,69 @@ public class UserController {
 
     }
 
+    /**
+     * 删除student
+     *
+     * @param studentModel
+     * @return
+     */
     @RequestMapping(value = "/studentDel", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> studentDel(@RequestBody StudentModel studentModel) {
-        System.out.println("hahah");
         studentService.deleteStudent(studentModel.getStudentId());
 
         return bulidReturnMap("ok", null);
 
     }
 
+    /**
+     * 编辑画面取值
+     *
+     * @param studentModel
+     * @return
+     */
     @RequestMapping(value = "/studentEdit", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> studentEdit(@RequestBody StudentModel studentModel) {
-        System.out.println("hahah");
         List<StudentDto> studentEditList = studentService.getDisplayById(studentModel.getStudentId());
 
         /**
          * 使用Optional方法往前台传值
          */
-        //StudentDto studentEditList1 = studentService.getDisplayById1(studentModel.getStudentId()).orElse(new StudentDto());
+        // StudentDto studentEditList1 = studentService.getDisplayById1(studentModel.getStudentId()).orElse(new
+        // StudentDto());
 
         Map<String, Object> resultMap = new HashMap<String, Object>();
         resultMap.put("studentEditList", studentEditList);
-        //resultMap.put("studentEditList1", studentEditList1);
+        // resultMap.put("studentEditList1", studentEditList1);
         return bulidReturnMap("ok", resultMap);
 
     }
 
+    /**
+     * 修改student
+     *
+     * @param studentModel
+     * @return
+     */
+    @RequestMapping(value = "/studentUpdate", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> studentUpdate(StudentModel studentModel) {
+        studentService.updateStudent(studentModel);
+
+        return bulidReturnMap("ok", null);
+
+    }
+
+    /**
+     * 文件上传
+     *
+     * @param studentModel
+     * @param file
+     * @param request
+     * @param model
+     * @return
+     */
     // 参考url：http://blog.csdn.net/cheung1021/article/details/7084673
     @RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
     public String fileUpload(StudentModel studentModel, @RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, ModelMap model) {

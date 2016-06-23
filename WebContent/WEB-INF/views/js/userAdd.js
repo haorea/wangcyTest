@@ -152,6 +152,8 @@ define([ "common" ], function(common) {
                     $("#p004GenderTxt").val(studentEditList[i].gender);
                     $("#p004AgeTxt").val(studentEditList[i].age);
                     $("#p004ScoreTxt").val(studentEditList[i].score);
+                    $("#p004StudentIdTxt").val(studentEditList[i].studentId);
+
                 }
                 //不适用for循环
                 /* $("#p004UserNameTxt").val(studentEditList[0].username);
@@ -175,11 +177,36 @@ define([ "common" ], function(common) {
                 click: function() {
                     $(this).dialog("close");
                 }
-            } ]
+            },{
+                text: "更新",
+                click:clickUpdateBtnHandler
+            }
+            ]
         });
     }
+    /**
+     * 更新
+     */
+    function clickUpdateBtnHandler(){
+        /**
+         * 使用$("#p004UserEditForm").serialize()发ajax
+         */
+        $.ajax({
+            url: "/" + getContextPath() + "/studentUpdate",
+            type: "POST",
+            data: $("#p004UserEditForm").serialize(),
+            success: function(data) {
 
-    // 删除
+
+            }
+        });
+
+
+    }
+
+    /**
+     * 删除
+     */
     function deleteStudent(value, rowValue, tdDom) {
         var deleteBtn = $("<input type='button' id='deleteBtn' value='删除' />");
         var studentId = rowValue.studentId;

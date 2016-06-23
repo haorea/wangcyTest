@@ -17,6 +17,7 @@
           <th>姓名</th>
           <td>
             <input id="p004UserNameTxt" name="username" type="text" />
+             <input id="p004StudentIdTxt" name="studentId" type="hidden" />
           </td>
         </tr>
         <tr>

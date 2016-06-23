@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.mvc.dto.StudentDto;
+import com.mvc.model.StudentModel;
 
 @Repository
 public class StudentDaoImpl implements StudentDao {
@@ -106,21 +107,51 @@ public class StudentDaoImpl implements StudentDao {
         JdbcTemelate.update(sql.toString(), paramer);
     }
 
-    // /**
-    // * 更新
-    // */
-    // public void update(int studentId) {
-    // final StringBuilder sql = new StringBuilder();
-    // sql.append(" UPDATE student");
-    // sql.append(" SET");
-    // sql.append(" username=？, ");
-    // sql.append(" age=？, ");
-    // sql.append(" score=？, ");
-    // sql.append(" gender=？ ");
-    // sql.append(" WHERE");
-    // sql.append(" student_id=? ");
-    //
-    // Object[] paramer=new Object[]{studentId};
-    // JdbcTemelate.update(sql.toString(), paramer);
-    // }
+    /**
+     * 插入
+     */
+    @Override
+    public void insert(StudentModel studentModel) {
+
+        final StringBuilder sql = new StringBuilder();
+
+        sql.append(" INSERT INTO ");
+        sql.append(" student ");
+        sql.append(" ( ");
+        sql.append(" username, ");
+        sql.append(" age, ");
+        sql.append(" score, ");
+        sql.append(" gender ");
+        sql.append(" ) ");
+        sql.append(" values ");
+        sql.append(" ( ");
+        sql.append(" ?, ");
+        sql.append(" ?, ");
+        sql.append(" ?, ");
+        sql.append(" ? ");
+        sql.append(" ) ");
+
+        Object[] paramer = new Object[]{studentModel.getUsername(), studentModel.getAge(), studentModel.getScore(), studentModel.getGender()};
+        JdbcTemelate.update(sql.toString(), paramer);
+
+    }
+
+    /**
+     * 更新
+     */
+    public void update(StudentModel studentModel) {
+        final StringBuilder sql = new StringBuilder();
+        sql.append(" UPDATE student");
+        sql.append(" SET");
+        sql.append(" username= ？ , ");
+        sql.append(" age= ？  , ");
+        sql.append(" score= ？ , ");
+        sql.append(" gender= ？ ");
+        sql.append(" WHERE");
+        sql.append(" student_id= ? ");
+        System.out.println(sql.toString());
+        Object[] paramer = new Object[]{"1", "22", "33", "44", 80};
+
+        JdbcTemelate.update(sql.toString(), paramer);
+    }
 }
