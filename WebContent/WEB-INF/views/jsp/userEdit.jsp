@@ -5,15 +5,12 @@
 <html lang="ja">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="${baseUrl}js/jquery.validate.js" type="text/JavaScript"></script>
-<script src="${baseUrl}js/jquery.validate.min.js" type="text/JavaScript"></script>
 <link type="text/css" href="${baseUrl}css/common.css" rel="stylesheet" />
 <title>SpringMvc</title>
 
 </head>
 <body>
-  <div style="padding-top: 30px;">学生信息登录</div>
-  <div id="p004UserEditDiv">
+  <div id="p004UserEditDiv" style="display:none">
     <form id="p004UserEditForm" enctype="multipart/form-data">
       <table id="p004UserEditTable" style="padding-top: 10px;">
         <tr>
@@ -38,12 +35,6 @@
           <th>成绩</th>
           <td>
             <input id="p004ScoreTxt" name="score" type="text" />
-          </td>
-        </tr>
-        <tr>
-          <th></th>
-          <td>
-            <button type="button" id="p004UserEditBtn">登录</button>
           </td>
         </tr>
       </table>

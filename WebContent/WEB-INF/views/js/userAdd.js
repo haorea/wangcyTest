@@ -135,7 +135,48 @@ define([ "common" ], function(common) {
     // 行点击
     function rowClickCallback(rowValue, trDom) {
         var studentId = rowValue.studentId;
-        alert("行点击事件")
+
+        $.ajax({
+            url: "/" + getContextPath() + "/studentEdit",
+            type: "POST",
+            data: JSON.stringify({
+                "studentId": studentId
+            }),
+            contentType: "application/json",
+            dataType: "json",
+            cache: false,
+            success: function(data) {
+                var studentEditList = data.result.studentEditList;
+                for (var i = 0; i < studentEditList.length; i++) {
+                    $("#p004UserNameTxt").val(studentEditList[i].username)
+                    $("#p004GenderTxt").val(studentEditList[i].gender);
+                    $("#p004AgeTxt").val(studentEditList[i].age);
+                    $("#p004ScoreTxt").val(studentEditList[i].score);
+                }
+                //不适用for循环
+                /* $("#p004UserNameTxt").val(studentEditList[0].username);
+                $("#p004GenderTxt").val(studentEditList[0].gender);
+                $("#p004AgeTxt").val(studentEditList[0].age);
+                $("#p004ScoreTxt").val(studentEditList[0].score);*/
+
+                // 后台使用Optional方法往前台传值，前台studentEditList1.username直接取到值
+                // var studentEditList1 = data.result.studentEditList1;
+                // $("#p004UserNameTxt").val(studentEditList1.username);
+            }
+        });
+
+        $("#p004UserEditDiv").dialog({
+            title: "学生信息编辑",
+            height: 550,
+            width: 500,
+            modal: true,
+            buttons: [ {
+                text: "关闭",
+                click: function() {
+                    $(this).dialog("close");
+                }
+            } ]
+        });
     }
 
     // 删除
@@ -144,7 +185,8 @@ define([ "common" ], function(common) {
         var studentId = rowValue.studentId;
         deleteBtn.appendTo(tdDom);
 
-        deleteBtn.off("click").on("click", function() {
+        deleteBtn.off("click").on("click", function(e) {
+            e.stopPropagation();
             $.ajax({
                 url: "/" + getContextPath() + "/studentDel",
                 type: "POST",

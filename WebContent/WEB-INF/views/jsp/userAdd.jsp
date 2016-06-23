@@ -76,6 +76,6 @@
 
   <div style="padding-top: 30px;">学生信息查询</div>
     <div id="p003StudentTable" style="width:500px;"></div>
-
 </body>
 </html>
+  <jsp:include page="./userEdit.jsp" />
