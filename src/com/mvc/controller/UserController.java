@@ -131,9 +131,12 @@ public class UserController {
     @ResponseBody
     public Map<String, Object> studentUpdate(StudentModel studentModel) {
         studentService.updateStudent(studentModel);
+        List<StudentDto> studentDtoList = studentService.selectStudent();
 
-        return bulidReturnMap("ok", null);
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("studentDtoList", studentDtoList);
 
+        return bulidReturnMap("ok", resultMap);
     }
 
     /**
@@ -185,7 +188,9 @@ public class UserController {
 
     }
 
-    /* 文件下载到 C:\\Users\\wang_changyuan\\upload\\ */
+    /**
+     * 文件下载到 C:\\Users\\wang_changyuan\\upload\\
+     */
     @RequestMapping(value = "/download", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> download(@RequestBody StudentModel studentModel, HttpServletResponse response, HttpServletRequest request) throws IOException {
@@ -245,6 +250,12 @@ public class UserController {
 
     }
 
+    /**
+     * 测试用model返回数据
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/sayHello", method = RequestMethod.POST)
     @ResponseBody
     public String sayHello(Model model) {

@@ -22,7 +22,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     /**
-     *
+     * 删除
      */
     @Override
     public void deleteStudent(int student) {
@@ -37,6 +37,9 @@ public class StudentServiceImpl implements StudentService {
         return studentDao.selectById(studentId);
     }
 
+    /**
+     * 使用Optional返回数据
+     */
     @Override
     public Optional<StudentDto> getDisplayById1(int studentId) {
         StudentDto studentDto = null;

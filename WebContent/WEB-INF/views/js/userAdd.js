@@ -6,11 +6,16 @@ define([ "common" ], function(common) {
         initListener();
     }
     ;
-    // 焦点
+    /**
+     * 焦点
+     */
     function initFocus() {
         $("#p003UserNameTxt").first().focus();
     }
-    // 校验
+
+    /**
+     * 校验
+     */
     function initFormValidate() {
         $("#p003UserAddForm").validate({
             rules: {
@@ -45,7 +50,10 @@ define([ "common" ], function(common) {
     }
 
     function initListener() {
-        // 登录按钮
+
+        /**
+         * 登录按钮
+         */
         $("#p003UserAddBtn").on("click", function() {
 
             var params = {};
@@ -78,7 +86,10 @@ define([ "common" ], function(common) {
                 }
             });
         });
-        // 检索按钮
+
+        /**
+         * 检索按钮
+         */
         $("#p003StudentSearchBtn").on("click", function() {
             var params = {};
             $.ajax({
@@ -99,7 +110,10 @@ define([ "common" ], function(common) {
             });
 
         });
-        // 清除按钮
+
+        /**
+         * 清除按钮
+         */
         $("#p003ClearBtn").on("click", function() {
             $("#p003UserNameTxt").val("");
             $("#p003GenderTxt").val("");
@@ -108,7 +122,10 @@ define([ "common" ], function(common) {
         });
 
     }
-    // 创建一览
+
+    /**
+     * 创建一览
+     */
     function createTable(studentDtoList) {
         $("#p003StudentTable").datatable({
             data: studentDtoList,
@@ -132,7 +149,10 @@ define([ "common" ], function(common) {
             rowClickFn: rowClickCallback
         });
     }
-    // 行点击
+
+    /**
+     * 行点击
+     */
     function rowClickCallback(rowValue, trDom) {
         var studentId = rowValue.studentId;
 
@@ -155,7 +175,7 @@ define([ "common" ], function(common) {
                     $("#p004StudentIdTxt").val(studentEditList[i].studentId);
 
                 }
-                //不适用for循环
+                // 不适用for循环
                 /* $("#p004UserNameTxt").val(studentEditList[0].username);
                 $("#p004GenderTxt").val(studentEditList[0].gender);
                 $("#p004AgeTxt").val(studentEditList[0].age);
@@ -177,17 +197,17 @@ define([ "common" ], function(common) {
                 click: function() {
                     $(this).dialog("close");
                 }
-            },{
+            }, {
                 text: "更新",
-                click:clickUpdateBtnHandler
-            }
-            ]
+                click: clickUpdateBtnHandler
+            } ]
         });
     }
+
     /**
      * 更新
      */
-    function clickUpdateBtnHandler(){
+    function clickUpdateBtnHandler() {
         /**
          * 使用$("#p004UserEditForm").serialize()发ajax
          */
@@ -196,12 +216,14 @@ define([ "common" ], function(common) {
             type: "POST",
             data: $("#p004UserEditForm").serialize(),
             success: function(data) {
-
-
+                if (data.code == "ok") {
+                    alert("更新成功");
+                    $("#p004UserEditDiv").dialog("close");
+                    var studentDtoList = data.result.studentDtoList;
+                    createTable(studentDtoList);
+                }
             }
         });
-
-
     }
 
     /**
@@ -249,6 +271,9 @@ define([ "common" ], function(common) {
 
     }
 
+    /**
+     * 取路径
+     */
     function getContextPath() {
         var fullPath = window.location.pathname;
         var contextPath = fullPath.split("/")[1];

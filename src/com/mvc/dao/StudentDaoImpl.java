@@ -139,18 +139,19 @@ public class StudentDaoImpl implements StudentDao {
     /**
      * 更新
      */
+    @Override
     public void update(StudentModel studentModel) {
         final StringBuilder sql = new StringBuilder();
         sql.append(" UPDATE student");
         sql.append(" SET");
-        sql.append(" username= ？ , ");
-        sql.append(" age= ？  , ");
-        sql.append(" score= ？ , ");
-        sql.append(" gender= ？ ");
+        sql.append(" username= ?, ");
+        sql.append(" age= ?,");
+        sql.append(" score= ?, ");
+        sql.append(" gender= ? ");
         sql.append(" WHERE");
         sql.append(" student_id= ? ");
         System.out.println(sql.toString());
-        Object[] paramer = new Object[]{"1", "22", "33", "44", 80};
+        Object[] paramer = new Object[]{studentModel.getUsername(), studentModel.getAge(), studentModel.getScore(), studentModel.getGender(), studentModel.getStudentId()};
 
         JdbcTemelate.update(sql.toString(), paramer);
     }
