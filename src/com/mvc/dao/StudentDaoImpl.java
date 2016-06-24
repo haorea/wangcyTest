@@ -38,24 +38,26 @@ public class StudentDaoImpl implements StudentDao {
         sql.append("  student");
         sql.append(" WHERE");
         sql.append(" 1=1 ");
-        if(StringUtils.isNotEmpty(studentModel.getUsername())){
-            sql.append(" AND username =?" );
+        if (StringUtils.isNotEmpty(studentModel.getUsername())) {
+            sql.append(" AND username LIKE CONCAT('%', ?, '%')");
             paramList.add(studentModel.getUsername());
+            System.out.println(paramList);
         }
-        if(StringUtils.isNotEmpty(studentModel.getAge())){
+        if (StringUtils.isNotEmpty(studentModel.getAge())) {
             sql.append(" AND age=?");
             paramList.add(studentModel.getAge());
         }
-        if(StringUtils.isNotEmpty(studentModel.getScore())){
+        if (StringUtils.isNotEmpty(studentModel.getScore())) {
             sql.append(" AND score=?");
             paramList.add(studentModel.getScore());
         }
-        if(StringUtils.isNotEmpty(studentModel.getGender())){
+        if (StringUtils.isNotEmpty(studentModel.getGender())) {
             sql.append(" AND gender=?");
             paramList.add(studentModel.getGender());
         }
 
         System.out.println(sql.toString());
+        System.out.println(paramList);
 
         List<StudentDto> studentList = JdbcTemelate.query(sql.toString(), paramList.toArray(), new StudentRowMapper());
 
