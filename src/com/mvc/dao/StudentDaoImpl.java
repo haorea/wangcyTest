@@ -2,8 +2,10 @@ package com.mvc.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -22,8 +24,9 @@ public class StudentDaoImpl implements StudentDao {
      * 检索
      */
     @Override
-    public List<StudentDto> selectByCondition() {
+    public List<StudentDto> selectByCondition(StudentModel studentModel) {
 
+        List<Object> paramList = new ArrayList<Object>();
         final StringBuilder sql = new StringBuilder();
         sql.append(" SELECT");
         sql.append(" student_id, ");
@@ -35,10 +38,26 @@ public class StudentDaoImpl implements StudentDao {
         sql.append("  student");
         sql.append(" WHERE");
         sql.append(" 1=1 ");
+        if(StringUtils.isNotEmpty(studentModel.getUsername())){
+            sql.append(" AND username =?" );
+            paramList.add(studentModel.getUsername());
+        }
+        if(StringUtils.isNotEmpty(studentModel.getAge())){
+            sql.append(" AND age=?");
+            paramList.add(studentModel.getAge());
+        }
+        if(StringUtils.isNotEmpty(studentModel.getScore())){
+            sql.append(" AND score=?");
+            paramList.add(studentModel.getScore());
+        }
+        if(StringUtils.isNotEmpty(studentModel.getGender())){
+            sql.append(" AND gender=?");
+            paramList.add(studentModel.getGender());
+        }
 
-        Object[] paramer = new Object[]{};
+        System.out.println(sql.toString());
 
-        List<StudentDto> studentList = JdbcTemelate.query(sql.toString(), paramer, new StudentRowMapper());
+        List<StudentDto> studentList = JdbcTemelate.query(sql.toString(), paramList.toArray(), new StudentRowMapper());
 
         return studentList;
     }
