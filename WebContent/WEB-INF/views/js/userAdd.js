@@ -18,10 +18,13 @@ define([ "common" ], function(common) {
      * 日期
      */
     function initDate() {
+
+        $('#p003DateTxt').datepicker('option', $.datepicker.regional['zh-CN']);
+
         $("#p003DateTxt").datepicker({
-            changeMonth:true,
-            changeYear:true,
-            dateFormat: "yy/mm/dd",
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: "yy/mm/dd"
         });
     }
 

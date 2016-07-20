@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="${baseUrl}js/jquery.validate.js" type="text/JavaScript"></script>
 <script src="${baseUrl}js/jquery.validate.min.js" type="text/JavaScript"></script>
+<script src="${baseUrl}js/jquery-ui-i18n.js" type="text/JavaScript"></script>
 <link type="text/css" href="${baseUrl}css/common.css" rel="stylesheet" />
 <title>SpringMvc</title>
 
