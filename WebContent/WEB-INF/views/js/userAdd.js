@@ -51,6 +51,9 @@ define([ "common" ], function(common) {
                     required: true,
                     digits: true,
                     maxlength: 85
+                },
+                date: {
+                    required: true,
                 }
             },
             messages: {
@@ -71,6 +74,9 @@ define([ "common" ], function(common) {
                     required: "必须入力成绩",
                     digits: "必须输入整数",
                     maxlength: "长度不能超过85字符"
+                },
+                date: {
+                    required: "必须入力日期"
                 }
             }
         });
