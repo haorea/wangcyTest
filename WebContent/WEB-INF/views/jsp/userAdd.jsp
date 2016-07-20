@@ -43,6 +43,20 @@
             <input id="p003ScoreTxt" name="score" type="text" />
           </td>
         </tr>
+         <tr>
+          <th>成绩</th>
+          <td>
+            <input id="p003ScoreTxt" name="score" type="text" />
+          </td>
+        </tr>
+
+         <tr>
+          <th>日期</th>
+          <td>
+            <input id="p003DateTxt" name="date" type="text" />
+          </td>
+        </tr>
+
         <tr>
           <th></th>
           <td>

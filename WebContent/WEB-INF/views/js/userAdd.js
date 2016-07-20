@@ -2,6 +2,7 @@ define([ "common" ], function(common) {
 
     function init() {
         initFocus();
+        initDate();
         initFormValidate();
         initListener();
     }
@@ -11,6 +12,17 @@ define([ "common" ], function(common) {
      */
     function initFocus() {
         $("#p003UserNameTxt").first().focus();
+    }
+
+    /**
+     * 日期
+     */
+    function initDate() {
+        $("#p003DateTxt").datepicker({
+            changeMonth:true,
+            changeYear:true,
+            dateFormat: "yy/mm/dd",
+        });
     }
 
     /**
