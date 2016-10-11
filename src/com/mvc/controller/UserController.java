@@ -263,7 +263,7 @@ public class UserController {
         model.addAttribute("hello", "hello");
         System.out.println("hahah");
 
-        return "ssq";
+        return "Hello";
     }
 
 }
