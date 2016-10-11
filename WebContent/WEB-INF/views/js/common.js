@@ -1,7 +1,7 @@
 /**
  *
  */
-define([ "userAdd","ssq"], function(userAdd,ssq) {
+define([ "userAdd","ssq","killing"], function(userAdd,ssq,killing) {
 
     function init() {
         loadPage();
@@ -18,7 +18,6 @@ define([ "userAdd","ssq"], function(userAdd,ssq) {
             dataType: "html"
 
         }).done(function(htmlContent) {
-
             $("#p002WelcomeDiv").html(htmlContent);
             if (pagename == "userAdd") {
 
@@ -27,6 +26,9 @@ define([ "userAdd","ssq"], function(userAdd,ssq) {
 
             if (pagename == "ssq") {
                 ssq.init();
+            }
+            if (pagename == "killing") {
+                killing.init();
             }
 
         })
