@@ -20,17 +20,16 @@ define([ "userAdd","ssq","killing"], function(userAdd,ssq,killing) {
         }).done(function(htmlContent) {
             $("#p002WelcomeDiv").html(htmlContent);
             if (pagename == "userAdd") {
-
                 userAdd.init();
             }
 
             if (pagename == "ssq") {
                 ssq.init();
             }
+
             if (pagename == "killing") {
                 killing.init();
             }
-
         })
     }
 

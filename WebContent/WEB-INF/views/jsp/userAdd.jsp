@@ -60,7 +60,7 @@
       </table>
     </form>
   </div>
-
+   <!--如果想让文件上传成功  把 useradd.js和killing.js 里面的 initDate 和validate 注释掉就行-->
   <form id="p003UserUploadForm" enctype="multipart/form-data" action="<%=request.getContextPath()%>/fileUpload"
     method="POST">
     <table>
