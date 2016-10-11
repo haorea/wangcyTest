@@ -143,9 +143,21 @@ define([ "common" ], function(common) {
                 text: "角色"
             }, {
                 name: "gamestatus",
-                text: "输赢状态"
+                text: "输赢状态",
+                fn: playerGameStatusHandler
             } ]
         });
+    }
+
+
+    function playerGameStatusHandler(value, rowValue, tdDom){
+        if (value == "success") {
+            return "赢";
+        } else if (value == "fail") {
+            return "输";
+        }else{
+            return "平";
+        }
     }
 
     /**

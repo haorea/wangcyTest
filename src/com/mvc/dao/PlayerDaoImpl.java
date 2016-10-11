@@ -91,6 +91,7 @@ public class PlayerDaoImpl implements PlayerDao {
         sql.append("  player.role_id=role.id");
         sql.append(" WHERE");
         sql.append(" 1=1 ");
+        sql.append(" order by player.date desc ");
 
         System.out.println(sql.toString());
         System.out.println(paramList);
