@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mvc.dao.PlayerDao;
+import com.mvc.dto.GameCountDto;
 import com.mvc.dto.InformationDto;
 import com.mvc.dto.PlayerDto;
 import com.mvc.dto.RoleDto;
@@ -37,10 +38,37 @@ public class PlayerServiceImpl implements PlayerService {
         playerDao.insert(playerModel);
 
     }
+
+    /**
+     * 新增玩家游戏记录
+     */
+    @Override
+    public void addInformation(String inforId,String gameStatus) {
+
+        playerDao.insertInformation(Integer.valueOf(inforId),gameStatus);
+
+    }
+
+    /**
+     * 更新玩家游戏记录
+     */
+    @Override
+    public void updateInformation(String inforId,String gameStatus,int successCount,int allGamesCount) {
+
+        playerDao.updateInformation(Integer.valueOf(inforId),gameStatus,Integer.valueOf(successCount),Integer.valueOf(allGamesCount));
+
+    }
+
     @Override
     public List<PlayerDto> selectPlayerList() {
         return playerDao.selectPlayerList();
     }
+
+    @Override
+    public List<GameCountDto> selectInformationList(String inforId) {
+        return playerDao.selectInformationList(Integer.valueOf(inforId));
+    }
+
 
 
 }

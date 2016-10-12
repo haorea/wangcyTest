@@ -2,6 +2,7 @@ package com.mvc.dao;
 
 import java.util.List;
 
+import com.mvc.dto.GameCountDto;
 import com.mvc.dto.InformationDto;
 import com.mvc.dto.PlayerDto;
 import com.mvc.dto.RoleDto;
@@ -13,5 +14,8 @@ public interface PlayerDao {
     public List<RoleDto> selectAllRole();
     public void insert(PlayerModel playerModel);
     public List<PlayerDto> selectPlayerList();
+    public List<GameCountDto> selectInformationList(int inforId);
+    public void insertInformation(int inforId,String gameStatus);
+    public void updateInformation(int inforId,String gameStatus,int successCount,int allGamesCount);
 
 }

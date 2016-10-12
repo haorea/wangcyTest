@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.mvc.dto.GameCountDto;
 import com.mvc.dto.InformationDto;
 import com.mvc.dto.PlayerDto;
 import com.mvc.dto.RoleDto;
@@ -64,7 +65,7 @@ public class PlayerDaoImpl implements PlayerDao {
     }
 
     /**
-     * 检索
+     * 检索插入的数据
      */
     @Override
     public List<PlayerDto> selectPlayerList() {
@@ -91,7 +92,7 @@ public class PlayerDaoImpl implements PlayerDao {
         sql.append("  player.role_id=role.id");
         sql.append(" WHERE");
         sql.append(" 1=1 ");
-        sql.append(" order by player.date desc ");
+        sql.append(" order by player.id desc ");
 
         System.out.println(sql.toString());
         System.out.println(paramList);
@@ -103,9 +104,37 @@ public class PlayerDaoImpl implements PlayerDao {
         return playerList;
     }
 
+    /**
+     * 查询是否存在玩的场数的玩家信息
+     */
+    @Override
+    public List<GameCountDto> selectInformationList(int inforId) {
+
+        List<Object> paramList = new ArrayList<Object>();
+        final StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT");
+        sql.append(" id, ");
+        sql.append(" infor_id, ");
+        sql.append(" all_games_count, ");
+        sql.append(" success_count ");
+        sql.append(" FROM");
+        sql.append("  game_count");
+        sql.append(" WHERE");
+        sql.append(" 1=1 ");
+        sql.append(" AND ");
+        sql.append(" infor_id=? ");
+        paramList.add(inforId);
+        System.out.println(sql.toString());
+
+        List<GameCountDto> informationList = JdbcTemelate.query(sql.toString(), paramList.toArray(), new informationListRowMapper());
+
+        System.out.println(sql.toString());
+
+        return informationList;
+    }
 
     /**
-     * 插入
+     * 插入游戏记录
      */
     @Override
     public void insert(PlayerModel playerModel) {
@@ -129,6 +158,68 @@ public class PlayerDaoImpl implements PlayerDao {
         sql.append(" ) ");
 
         Object[] paramer = new Object[]{playerModel.getInforId(),playerModel.getDate(),playerModel.getGameStatus(),playerModel.getRoleId()};
+        JdbcTemelate.update(sql.toString(), paramer);
+
+    }
+
+    /**
+     * 插入游戏统计记录
+     */
+    @Override
+    public void insertInformation(int inforId,String gameStatus){
+
+        final StringBuilder sql = new StringBuilder();
+        int successCount=0;
+        int allGamesCount=1;
+
+        sql.append(" INSERT INTO ");
+        sql.append(" game_count ");
+        sql.append(" ( ");
+        sql.append(" infor_id, ");
+        sql.append(" all_games_count, ");
+        sql.append(" success_count ");
+        sql.append(" ) ");
+        sql.append(" values ");
+        sql.append(" ( ");
+        sql.append(" ?, ");
+        sql.append(" ?, ");
+        sql.append(" ? ");
+        sql.append(" ) ");
+
+        if ( "success" .equals(gameStatus) ) {
+            successCount=1;
+        }else{
+            successCount=0;
+        }
+
+        System.out.println(sql.toString());
+
+        Object[] paramer = new Object[]{inforId,allGamesCount,successCount};
+        JdbcTemelate.update(sql.toString(), paramer);
+
+    }
+
+    /**
+     * 更新游戏局数记录
+     */
+    @Override
+    public void updateInformation(int inforId,String gameStatus,int successCount,int allGamesCount){
+
+        final StringBuilder sql = new StringBuilder();
+        int dbSuccessCount=0;
+        sql.append(" UPDATE  game_count ");
+        sql.append(" SET ");
+        sql.append(" all_games_count=?, ");
+        sql.append(" success_count=? ");
+        sql.append(" WHERE");
+        sql.append(" infor_id= ? ");
+        if ( "success" .equals(gameStatus) ) {
+            dbSuccessCount = successCount+1;
+        }
+        allGamesCount=allGamesCount+1;
+        System.out.println(sql.toString());
+
+        Object[] paramer = new Object[]{allGamesCount,dbSuccessCount,inforId};
         JdbcTemelate.update(sql.toString(), paramer);
 
     }
@@ -206,5 +297,18 @@ public class PlayerDaoImpl implements PlayerDao {
         }
     }
 
+    protected class informationListRowMapper implements RowMapper<GameCountDto> {
+
+        @Override
+        public GameCountDto mapRow(ResultSet rs, int paramInt) throws SQLException {
+
+            GameCountDto gameCountDto = new GameCountDto();
+            gameCountDto.setId(rs.getInt("id"));
+            gameCountDto.setInforId(rs.getInt("infor_id"));
+            gameCountDto.setAllGamesCount(rs.getInt("all_games_count"));
+            gameCountDto.setSuccessCount(rs.getInt("success_count"));
+            return gameCountDto;
+        }
+    }
 
 }

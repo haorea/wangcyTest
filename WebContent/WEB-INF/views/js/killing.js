@@ -70,7 +70,7 @@ define([ "common" ], function(common) {
                 }
             },
             messages: {
-                date: {
+                 date: {
                     required: "必须入力日期"
                 }
             }
@@ -82,6 +82,7 @@ define([ "common" ], function(common) {
      */
     function initListener() {
 
+        //录入按钮按下
         $("#p004AddBtn").on("click", function() {
             $("#p004PlayerInforInsertSearch").text("");
            $("#p004PlayerInforInsertSearch").text("玩家信息录入查询");
@@ -124,6 +125,14 @@ define([ "common" ], function(common) {
             });
 
         });
+
+
+        //检索按钮押下
+        $("#p004SearchBtn").on("click",function(){
+            $("#p004PlayerInforInsertSearch").text("");
+            $("#p004PlayerInforInsertSearch").text("玩家胜率查询");
+        });
+
 
     }
     /**

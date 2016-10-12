@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mvc.dto.GameCountDto;
 import com.mvc.dto.InformationDto;
 import com.mvc.dto.PlayerDto;
 import com.mvc.dto.RoleDto;
@@ -60,6 +61,17 @@ public class KillingController {
     public Map<String, Object> playerAdd(@RequestBody PlayerModel playerModel) {
 
         playerService.addPlayer(playerModel);
+
+        String inforId = playerModel.getInforId();
+        String gameStatus =playerModel.getGameStatus();
+        List<GameCountDto> informationList=playerService.selectInformationList(inforId);
+        if (informationList.size() == 0) {
+            playerService.addInformation(inforId,gameStatus);
+        }else{
+            int successCount =informationList.get(0).getSuccessCount();
+            int allGamesCount=informationList.get(0).getAllGamesCount();
+            playerService.updateInformation(inforId,gameStatus,successCount,allGamesCount);
+        }
         List<PlayerDto> playerDtoList = playerService.selectPlayerList();
         Map<String, Object> resultMap = new HashMap<String, Object>();
         resultMap.put("playerDtoList", playerDtoList);
