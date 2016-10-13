@@ -22,7 +22,7 @@ import com.mvc.service.PlayerService;
 public class KillingController {
 
     @Autowired
-   PlayerService playerService = null;
+    PlayerService playerService = null;
 
     @RequestMapping(value = "/killing")
     public String killing() {
@@ -63,14 +63,14 @@ public class KillingController {
         playerService.addPlayer(playerModel);
 
         String inforId = playerModel.getInforId();
-        String gameStatus =playerModel.getGameStatus();
-        List<GameCountDto> informationList=playerService.selectInformationList(inforId);
+        String gameStatus = playerModel.getGameStatus();
+        List<GameCountDto> informationList = playerService.selectInformationList(inforId);
         if (informationList.size() == 0) {
-            playerService.addInformation(inforId,gameStatus);
-        }else{
-            int successCount =informationList.get(0).getSuccessCount();
-            int allGamesCount=informationList.get(0).getAllGamesCount();
-            playerService.updateInformation(inforId,gameStatus,successCount,allGamesCount);
+            playerService.addInformation(inforId, gameStatus);
+        } else {
+            int successCount = informationList.get(0).getSuccessCount();
+            int allGamesCount = informationList.get(0).getAllGamesCount();
+            playerService.updateInformation(inforId, gameStatus, successCount, allGamesCount);
         }
         List<PlayerDto> playerDtoList = playerService.selectPlayerList();
         Map<String, Object> resultMap = new HashMap<String, Object>();
@@ -80,7 +80,23 @@ public class KillingController {
 
     }
 
+    /**
+     * 检索游戏胜率信息
+     *
+     * @param playerModel
+     * @return
+     */
+    @RequestMapping(value = "gameCountSearch", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> gameCountSearch(@RequestBody PlayerModel playerModel) {
 
+        List<GameCountDto> informationDtoList = playerService.selectInformationList();
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("informationDtoList", informationDtoList);
+
+        return bulidReturnMap("ok", resultMap);
+
+    }
 
     public Map<String, Object> bulidReturnMap(String code, Object result) {
 
@@ -91,6 +107,5 @@ public class KillingController {
         return returnMap;
 
     }
-
 
 }

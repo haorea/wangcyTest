@@ -69,6 +69,9 @@ public class PlayerServiceImpl implements PlayerService {
         return playerDao.selectInformationList(Integer.valueOf(inforId));
     }
 
-
+    @Override
+    public List<GameCountDto> selectInformationList() {
+        return playerDao.selectAllInformationList();
+    }
 
 }

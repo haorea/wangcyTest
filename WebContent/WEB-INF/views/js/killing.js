@@ -70,7 +70,7 @@ define([ "common" ], function(common) {
                 }
             },
             messages: {
-                 date: {
+                date: {
                     required: "必须入力日期"
                 }
             }
@@ -82,10 +82,10 @@ define([ "common" ], function(common) {
      */
     function initListener() {
 
-        //录入按钮按下
+        // 录入按钮按下
         $("#p004AddBtn").on("click", function() {
             $("#p004PlayerInforInsertSearch").text("");
-           $("#p004PlayerInforInsertSearch").text("玩家信息录入查询");
+            $("#p004PlayerInforInsertSearch").text("玩家信息录入查询");
             var params = {};
             params["inforId"] = $("#p004PlayerNameSelect").val();
             params["roleId"] = $("#p004RoleSelect").val();
@@ -109,14 +109,14 @@ define([ "common" ], function(common) {
                     if (data.code == "ok") {
 
                         var playerDtoList = data.result.playerDtoList;
-                       /*
-                        * 下面代码是自己画表格
-                        *
-                        var $table = $("<table style='border:1px solid;border-collapse:collapse'><tr style='border:1px solid'><th>用户名</th></tr></table>");
-                        $.each(inforNameList, function(name, value) {
-                            $table.append("<tr style='border:1px solid'><td>" + value + "</td></tr>");
-                        });
-                        $("#p004PlayerTable").append($table);*/
+                        /*
+                         * 下面代码是自己画表格
+                         *
+                         var $table = $("<table style='border:1px solid;border-collapse:collapse'><tr style='border:1px solid'><th>用户名</th></tr></table>");
+                         $.each(inforNameList, function(name, value) {
+                             $table.append("<tr style='border:1px solid'><td>" + value + "</td></tr>");
+                         });
+                         $("#p004PlayerTable").append($table);*/
 
                         createTable(playerDtoList);
 
@@ -126,19 +126,34 @@ define([ "common" ], function(common) {
 
         });
 
-
-        //检索按钮押下
-        $("#p004SearchBtn").on("click",function(){
+        // 检索按钮押下
+        $("#p004SearchBtn").on("click", function() {
             $("#p004PlayerInforInsertSearch").text("");
             $("#p004PlayerInforInsertSearch").text("玩家胜率查询");
+            var inforMationParam = {};
+            $.ajax({
+                url: "/" + getContextPath() + "/gameCountSearch",
+                type: "POST",
+                data: JSON.stringify(inforMationParam),
+                contentType: "application/json",
+                dataType: "json",
+                cache: false,
+                success: function(data) {
+                    if (data.code == "ok") {
+                        var informationDtoList = data.result.informationDtoList;
+                        createRateTable(informationDtoList);
+                    }
+                }
+            });
         });
-
 
     }
     /**
-     * 创建一览
+     * 创建登录信息一览
      */
     function createTable(playerDtoList) {
+        $("#p004InformationTable").hide();
+        $("#p004PlayerTable").show();
         $("#p004PlayerTable").datatable({
             data: playerDtoList,
             columns: [ {
@@ -158,13 +173,43 @@ define([ "common" ], function(common) {
         });
     }
 
+    /**
+     * 创建胜率一览
+     */
+    function createRateTable(informationDtoList) {
+        $("#p004PlayerTable").hide();
+        $("#p004InformationTable").show();
+        $("#p004InformationTable").datatable({
+            data: informationDtoList,
+            columns: [ {
+                name: "inforName",
+                text: "用户名"
+            }, {
+                name: "allGamesCount",
+                text: "总局数"
+            }, {
+                name: "successCount",
+                text: "胜局"
+            }, {
+                name: "rate",
+                text: "胜率",
+                fn: rateHandler
+            } ]
+        });
+    }
 
-    function playerGameStatusHandler(value, rowValue, tdDom){
+    function rateHandler(value, rowValue, tdDom) {
+
+        return value + "%";
+    }
+
+    //胜率显示
+    function playerGameStatusHandler(value, rowValue, tdDom) {
         if (value == "success") {
             return "赢";
         } else if (value == "fail") {
             return "输";
-        }else{
+        } else {
             return "平";
         }
     }

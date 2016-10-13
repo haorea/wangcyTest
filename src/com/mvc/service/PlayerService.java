@@ -24,4 +24,6 @@ public interface PlayerService {
 
     public void updateInformation(String inforId,String gameStatus, int successCount,int allGamesCount);
 
+    public List<GameCountDto> selectInformationList();
+
 }

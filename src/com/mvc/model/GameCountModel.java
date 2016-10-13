@@ -6,6 +6,7 @@ public class GameCountModel {
     private String inforId = null;
     private String allGamesCount = null;
     private String successCount = null;
+    private String inforName = null;
 
     public String getId() {
         return id;
@@ -37,6 +38,14 @@ public class GameCountModel {
 
     public void setSuccessCount(String successCount) {
         this.successCount = successCount;
+    }
+
+    public String getInforName() {
+        return inforName;
+    }
+
+    public void setInforName(String inforName) {
+        this.inforName = inforName;
     }
 
 }

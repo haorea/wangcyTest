@@ -105,6 +105,41 @@ public class PlayerDaoImpl implements PlayerDao {
     }
 
     /**
+     * 检索胜率的记录
+     */
+    @Override
+    public List<GameCountDto> selectAllInformationList() {
+
+        List<Object> paramList = new ArrayList<Object>();
+        final StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT");
+        sql.append("  game_count.id, ");
+        sql.append(" game_count.infor_id, ");
+        sql.append(" game_count.all_games_count, ");
+        sql.append(" game_count.success_count, ");
+        sql.append(" cast(avg((game_count.success_count)/(game_count.all_games_count)*100)as decimal(10,2)) as rate, ");
+        sql.append(" information.player_name ");
+        sql.append(" FROM");
+        sql.append("  game_count");
+        sql.append("  LEFT JOIN");
+        sql.append("  information");
+        sql.append("  ON");
+        sql.append("  game_count.infor_id=information.id");
+        sql.append(" WHERE");
+        sql.append(" 1=1 ");
+        sql.append(" group by information.player_name ");
+        sql.append(" order by game_count.id asc ");
+
+        System.out.println(sql.toString());
+
+        List<GameCountDto> playerList = JdbcTemelate.query(sql.toString(), paramList.toArray(), new GameCountRowMapper());
+
+        System.out.println(sql.toString());
+
+        return playerList;
+    }
+
+    /**
      * 查询是否存在玩的场数的玩家信息
      */
     @Override
@@ -215,6 +250,8 @@ public class PlayerDaoImpl implements PlayerDao {
         sql.append(" infor_id= ? ");
         if ( "success" .equals(gameStatus) ) {
             dbSuccessCount = successCount+1;
+        }else{
+            dbSuccessCount = successCount;
         }
         allGamesCount=allGamesCount+1;
         System.out.println(sql.toString());
@@ -307,6 +344,22 @@ public class PlayerDaoImpl implements PlayerDao {
             gameCountDto.setInforId(rs.getInt("infor_id"));
             gameCountDto.setAllGamesCount(rs.getInt("all_games_count"));
             gameCountDto.setSuccessCount(rs.getInt("success_count"));
+            return gameCountDto;
+        }
+    }
+
+    protected class GameCountRowMapper implements RowMapper<GameCountDto> {
+
+        @Override
+        public GameCountDto mapRow(ResultSet rs, int paramInt) throws SQLException {
+
+            GameCountDto gameCountDto = new GameCountDto();
+            gameCountDto.setId(rs.getInt("id"));
+            gameCountDto.setInforId(rs.getInt("infor_id"));
+            gameCountDto.setInforName(rs.getString("player_name"));
+            gameCountDto.setAllGamesCount(rs.getInt("all_games_count"));
+            gameCountDto.setSuccessCount(rs.getInt("success_count"));
+            gameCountDto.setRate(rs.getFloat("rate"));
             return gameCountDto;
         }
     }

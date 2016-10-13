@@ -47,7 +47,6 @@
         <td>
             <button type="button" id="p004AddBtn" >录入</button>
             <button type="button" id="p004SearchBtn" >胜率查询</button>
-            <button type="button" id="p004ClearBtn" >Clear</button>
           </td>
         </tr>
       </table>
@@ -55,5 +54,6 @@
   </div>
    <div style="padding-top: 30px;" id="p004PlayerInforInsertSearch"></div>
   <div id="p004PlayerTable" style="width: 381px;"></div>
+   <div id="p004InformationTable" style="width: 300px;"></div>
 </body>
 </html>

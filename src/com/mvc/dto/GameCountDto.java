@@ -6,6 +6,8 @@ public class GameCountDto {
     private int inforId;
     private int allGamesCount;
     private int successCount;
+    private String inforName=null;
+    private float rate;
 
     public int getId() {
         return id;
@@ -37,6 +39,22 @@ public class GameCountDto {
 
     public void setSuccessCount(int successCount) {
         this.successCount = successCount;
+    }
+
+    public String getInforName() {
+        return inforName;
+    }
+
+    public void setInforName(String inforName) {
+        this.inforName = inforName;
+    }
+
+    public float getRate() {
+        return rate;
+    }
+
+    public void setRate(float rate) {
+        this.rate = rate;
     }
 
 }
