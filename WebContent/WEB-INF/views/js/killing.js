@@ -69,11 +69,13 @@ define([ "common" ], function(common) {
             rules: {
                 date: {
                     required: true,
+                    date:true
                 }
             },
             messages: {
                 date: {
-                    required: "必须入力日期"
+                    required: "必须入力日期",
+                    date:"请输入合法日期"
                 }
             }
         });

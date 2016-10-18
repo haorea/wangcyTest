@@ -4,6 +4,7 @@ define([ "common" ], function(common) {
 
         initStatus();
         initDate();
+        initFormValidate();
         initListener();
     }
     ;
@@ -59,6 +60,24 @@ define([ "common" ], function(common) {
             dateFormat: "yy/mm/dd",
         });
         $("#p005Date").datepicker('setDate', new Date());
+    }
+
+    /**
+     * 校验
+     */
+    function initFormValidate() {
+        $("#p005KillRateSearchForm").validate({
+            rules: {
+                date: {
+                    date: true
+                }
+            },
+            messages: {
+                date: {
+                    date: "请输入合法日期"
+                }
+            }
+        });
     }
 
     /**
