@@ -151,7 +151,20 @@ public class PlayerDaoImpl implements PlayerDao {
         sql.append(" id, ");
         sql.append(" infor_id, ");
         sql.append(" all_games_count, ");
-        sql.append(" success_count ");
+        sql.append(" success_count, ");
+        sql.append(" date, ");
+        sql.append(" game_status, ");
+        sql.append(" role_id, ");
+        sql.append(" all_werewolf_count, ");
+        sql.append(" success_werewolf_count, ");
+        sql.append(" all_prophet_count, ");
+        sql.append(" success_prophet_count, ");
+        sql.append(" all_witch_count, ");
+        sql.append(" success_witch_count, ");
+        sql.append(" all_hunter_count, ");
+        sql.append(" success_hunter_count, ");
+        sql.append(" all_civilian_count, ");
+        sql.append(" success_civilian_count ");
         sql.append(" FROM");
         sql.append("  game_count");
         sql.append(" WHERE");
@@ -192,7 +205,7 @@ public class PlayerDaoImpl implements PlayerDao {
         sql.append(" ? ");
         sql.append(" ) ");
 
-        Object[] paramer = new Object[]{playerModel.getInforId(),playerModel.getDate(),playerModel.getGameStatus(),playerModel.getRoleId()};
+        Object[] paramer = new Object[]{playerModel.getInforId(), playerModel.getDate(), playerModel.getGameStatus(), playerModel.getRoleId()};
         JdbcTemelate.update(sql.toString(), paramer);
 
     }
@@ -201,35 +214,111 @@ public class PlayerDaoImpl implements PlayerDao {
      * 插入游戏统计记录
      */
     @Override
-    public void insertInformation(int inforId,String gameStatus){
+    public void insertInformation(PlayerModel playerModel) {
 
         final StringBuilder sql = new StringBuilder();
-        int successCount=0;
-        int allGamesCount=1;
+        int successCount = 0;
+        int allGamesCount = 1;
+        int allWerewolfCount = 0;
+        int successWerewolfCount = 0;
+        int allProphetCount = 0;
+        int successProphetCount = 0;
+        int allWitchCount = 0;
+        int successWitchCount = 0;
+        int allHunterCount = 0;
+        int successHunterCount = 0;
+        int allCivilianCount = 0;
+        int successCivilianCount = 0;
+        int inforId = Integer.valueOf(playerModel.getInforId());
+        String gameStatus = playerModel.getGameStatus();
+        int roleId = Integer.valueOf(playerModel.getRoleId());
+        String date = playerModel.getDate();
 
         sql.append(" INSERT INTO ");
         sql.append(" game_count ");
         sql.append(" ( ");
         sql.append(" infor_id, ");
         sql.append(" all_games_count, ");
-        sql.append(" success_count ");
+        sql.append(" success_count, ");
+        sql.append(" date, ");
+        sql.append(" game_status, ");
+        sql.append(" role_id, ");
+        sql.append(" all_werewolf_count, ");
+        sql.append(" success_werewolf_count, ");
+        sql.append(" all_prophet_count, ");
+        sql.append(" success_prophet_count, ");
+        sql.append(" all_witch_count, ");
+        sql.append(" success_witch_count, ");
+        sql.append(" all_hunter_count, ");
+        sql.append(" success_hunter_count, ");
+        sql.append(" all_civilian_count, ");
+        sql.append(" success_civilian_count ");
         sql.append(" ) ");
         sql.append(" values ");
         sql.append(" ( ");
         sql.append(" ?, ");
         sql.append(" ?, ");
+        sql.append(" ?, ");
+        sql.append(" ?, ");
+        sql.append(" ?, ");
+        sql.append(" ?, ");
+        sql.append(" ?, ");
+        sql.append(" ?, ");
+        sql.append(" ?, ");
+        sql.append(" ?, ");
+        sql.append(" ?, ");
+        sql.append(" ?, ");
+        sql.append(" ?, ");
+        sql.append(" ?, ");
+        sql.append(" ?, ");
         sql.append(" ? ");
         sql.append(" ) ");
 
-        if ( "success" .equals(gameStatus) ) {
-            successCount=1;
-        }else{
-            successCount=0;
+        if ("success".equals(gameStatus)) {
+            successCount = 1;
+        } else {
+            successCount = 0;
+        }
+
+        if (roleId == 1) {
+            allProphetCount = 1;
+            if ("success".equals(gameStatus)) {
+                successProphetCount = 1;
+            }
+        }
+
+        if (roleId == 2) {
+            allWitchCount = 1;
+            if ("success".equals(gameStatus)) {
+                successWitchCount = 1;
+            }
+        }
+
+        if (roleId == 3) {
+            allHunterCount = 1;
+            if ("success".equals(gameStatus)) {
+                successHunterCount = 1;
+            }
+        }
+
+        if (roleId == 4) {
+            allWerewolfCount = 1;
+            if ("success".equals(gameStatus)) {
+                successWerewolfCount = 1;
+            }
+        }
+
+        if (roleId == 5) {
+            allCivilianCount = 1;
+            if ("success".equals(gameStatus)) {
+                successCivilianCount = 1;
+            }
         }
 
         System.out.println(sql.toString());
 
-        Object[] paramer = new Object[]{inforId,allGamesCount,successCount};
+        Object[] paramer = new Object[]{inforId, allGamesCount, successCount, date, gameStatus, roleId, allWerewolfCount, successWerewolfCount
+                , allProphetCount, successProphetCount, allWitchCount, successWitchCount, allHunterCount, successHunterCount, allCivilianCount, successCivilianCount};
         JdbcTemelate.update(sql.toString(), paramer);
 
     }
@@ -238,30 +327,96 @@ public class PlayerDaoImpl implements PlayerDao {
      * 更新游戏局数记录
      */
     @Override
-    public void updateInformation(int inforId,String gameStatus,int successCount,int allGamesCount){
+    public void updateInformation(PlayerModel playerModel) {
 
         final StringBuilder sql = new StringBuilder();
-        int dbSuccessCount=0;
+        int dbSuccessCount = 0;
+        String gameStatus = playerModel.getGameStatus();
+        int successCount = playerModel.getSuccessCount();
+        int allGamesCount = playerModel.getAllGamesCount();
+        int inforId = Integer.valueOf(playerModel.getInforId());
+        int allWerewolfCount = 0;
+        int successWerewolfCount = 0;
+        int allProphetCount = 0;
+        int successProphetCount = 0;
+        int allWitchCount = 0;
+        int successWitchCount = 0;
+        int allHunterCount = 0;
+        int successHunterCount = 0;
+        int allCivilianCount = 0;
+        int successCivilianCount = 0;
+        int roleId = Integer.valueOf(playerModel.getRoleId());
+        String date = playerModel.getDate();
+
         sql.append(" UPDATE  game_count ");
         sql.append(" SET ");
         sql.append(" all_games_count=?, ");
-        sql.append(" success_count=? ");
+        sql.append(" success_count=?, ");
+        sql.append(" date=?, ");
+        sql.append(" game_status=?, ");
+        sql.append(" role_id=?, ");
+        sql.append(" all_werewolf_count=?, ");
+        sql.append(" success_werewolf_count=?, ");
+        sql.append(" all_prophet_count=?, ");
+        sql.append(" success_prophet_count=?, ");
+        sql.append(" all_witch_count=?, ");
+        sql.append(" success_witch_count=?, ");
+        sql.append(" all_hunter_count=?, ");
+        sql.append(" success_hunter_count=?, ");
+        sql.append(" all_civilian_count=?, ");
+        sql.append(" success_civilian_count=? ");
+
         sql.append(" WHERE");
         sql.append(" infor_id= ? ");
-        if ( "success" .equals(gameStatus) ) {
-            dbSuccessCount = successCount+1;
-        }else{
+        if ("success".equals(gameStatus)) {
+            dbSuccessCount = successCount + 1;
+        } else {
             dbSuccessCount = successCount;
         }
-        allGamesCount=allGamesCount+1;
+        allGamesCount = allGamesCount + 1;
+
+        if (roleId == 1) {
+            allProphetCount = 1;
+            if ("success".equals(gameStatus)) {
+                successProphetCount = 1;
+            }
+        }
+
+        if (roleId == 2) {
+            allWitchCount = 1;
+            if ("success".equals(gameStatus)) {
+                successWitchCount = 1;
+            }
+        }
+
+        if (roleId == 3) {
+            allHunterCount = 1;
+            if ("success".equals(gameStatus)) {
+                successHunterCount = 1;
+            }
+        }
+
+        if (roleId == 4) {
+            allWerewolfCount = 1;
+            if ("success".equals(gameStatus)) {
+                successWerewolfCount = 1;
+            }
+        }
+
+        if (roleId == 5) {
+            allCivilianCount = 1;
+            if ("success".equals(gameStatus)) {
+                successCivilianCount = 1;
+            }
+        }
+
         System.out.println(sql.toString());
 
-        Object[] paramer = new Object[]{allGamesCount,dbSuccessCount,inforId};
+        Object[] paramer = new Object[]{allGamesCount, dbSuccessCount, date, gameStatus, roleId, allWerewolfCount, successWerewolfCount
+                , allProphetCount, successProphetCount, allWitchCount, successWitchCount, allHunterCount, successHunterCount, allCivilianCount, successCivilianCount, inforId};
         JdbcTemelate.update(sql.toString(), paramer);
 
     }
-
-
 
     protected class RoleRowMapper implements RowMapper<RoleDto> {
 
@@ -287,8 +442,6 @@ public class PlayerDaoImpl implements PlayerDao {
         }
     }
 
-
-
     protected class PlayerRowMapper implements RowMapper<PlayerDto> {
 
         @Override
@@ -302,8 +455,6 @@ public class PlayerDaoImpl implements PlayerDao {
             return playerDto;
         }
     }
-
-
 
     protected class PlayerCountListRowMapper implements RowMapper<PlayerDto> {
 
@@ -344,6 +495,20 @@ public class PlayerDaoImpl implements PlayerDao {
             gameCountDto.setInforId(rs.getInt("infor_id"));
             gameCountDto.setAllGamesCount(rs.getInt("all_games_count"));
             gameCountDto.setSuccessCount(rs.getInt("success_count"));
+            gameCountDto.setDate(rs.getDate("date"));
+            gameCountDto.setGamestatus(rs.getString("game_status"));
+            gameCountDto.setRoleId(rs.getInt("role_id"));
+            gameCountDto.setAllWerewolfCount(rs.getInt("all_werewolf_count"));
+            gameCountDto.setSuccessWerewolfCount(rs.getInt("success_werewolf_count"));
+            gameCountDto.setAllProphetCount(rs.getInt("all_prophet_count"));
+            gameCountDto.setSuccessProphetCount(rs.getInt("success_prophet_count"));
+            gameCountDto.setAllWitchCount(rs.getInt("all_witch_count"));
+            gameCountDto.setSuccessWitchCount(rs.getInt("success_witch_count"));
+            gameCountDto.setAllHunterCount(rs.getInt("all_hunter_count"));
+            gameCountDto.setSuccessHunterCount(rs.getInt("success_hunter_count"));
+            gameCountDto.setAllCivilianCount(rs.getInt("all_civilian_count"));
+            gameCountDto.setSuccessCivilianCount(rs.getInt("success_civilian_count"));
+
             return gameCountDto;
         }
     }

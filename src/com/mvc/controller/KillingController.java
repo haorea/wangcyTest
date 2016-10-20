@@ -70,16 +70,16 @@ public class KillingController {
     public Map<String, Object> playerAdd(@RequestBody PlayerModel playerModel) {
 
         playerService.addPlayer(playerModel);
-
         String inforId = playerModel.getInforId();
-        String gameStatus = playerModel.getGameStatus();
         List<GameCountDto> informationList = playerService.selectInformationList(inforId);
         if (informationList.size() == 0) {
-            playerService.addInformation(inforId, gameStatus);
+            playerService.addInformation(playerModel);
         } else {
             int successCount = informationList.get(0).getSuccessCount();
             int allGamesCount = informationList.get(0).getAllGamesCount();
-            playerService.updateInformation(inforId, gameStatus, successCount, allGamesCount);
+            playerModel.setSuccessCount(successCount);
+            playerModel.setAllGamesCount(allGamesCount);
+            playerService.updateInformation(playerModel);
         }
         List<PlayerDto> playerDtoList = playerService.selectPlayerList();
         Map<String, Object> resultMap = new HashMap<String, Object>();

@@ -15,8 +15,8 @@ public interface PlayerDao {
     public void insert(PlayerModel playerModel);
     public List<PlayerDto> selectPlayerList();
     public List<GameCountDto> selectInformationList(int inforId);
-    public void insertInformation(int inforId,String gameStatus);
-    public void updateInformation(int inforId,String gameStatus,int successCount,int allGamesCount);
+    public void insertInformation(PlayerModel playerModel);
+    public void updateInformation(PlayerModel playerModel);
     public List<GameCountDto> selectAllInformationList();
 
 }

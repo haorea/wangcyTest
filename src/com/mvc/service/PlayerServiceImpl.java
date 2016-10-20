@@ -43,9 +43,9 @@ public class PlayerServiceImpl implements PlayerService {
      * 新增玩家游戏记录
      */
     @Override
-    public void addInformation(String inforId,String gameStatus) {
+    public void addInformation(PlayerModel playerModel) {
 
-        playerDao.insertInformation(Integer.valueOf(inforId),gameStatus);
+        playerDao.insertInformation(playerModel);
 
     }
 
@@ -53,9 +53,9 @@ public class PlayerServiceImpl implements PlayerService {
      * 更新玩家游戏记录
      */
     @Override
-    public void updateInformation(String inforId,String gameStatus,int successCount,int allGamesCount) {
+    public void updateInformation(PlayerModel playerModel) {
 
-        playerDao.updateInformation(Integer.valueOf(inforId),gameStatus,Integer.valueOf(successCount),Integer.valueOf(allGamesCount));
+        playerDao.updateInformation(playerModel);
 
     }
 

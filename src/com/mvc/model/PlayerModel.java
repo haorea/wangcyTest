@@ -8,7 +8,8 @@ public class PlayerModel {
     private String date = null;
     private String gameStatus = null;
     private String roleId = null;
-    private long successCount;
+    private int successCount;
+    private int allGamesCount;
 
     public String getId() {
         return id;
@@ -58,12 +59,20 @@ public class PlayerModel {
         this.inforId = inforId;
     }
 
-    public long getSuccessCount() {
+    public int getSuccessCount() {
         return successCount;
     }
 
-    public void setSuccessCount(long successCount) {
+    public void setSuccessCount(int successCount) {
         this.successCount = successCount;
+    }
+
+    public int getAllGamesCount() {
+        return allGamesCount;
+    }
+
+    public void setAllGamesCount(int allGamesCount) {
+        this.allGamesCount = allGamesCount;
     }
 
 }

@@ -20,9 +20,9 @@ public interface PlayerService {
 
     public List<GameCountDto> selectInformationList(String inforId);
 
-    public void addInformation(String inforId, String gameStatus);
+    public void addInformation(PlayerModel playerModel);
 
-    public void updateInformation(String inforId,String gameStatus, int successCount,int allGamesCount);
+    public void updateInformation(PlayerModel playerModel);
 
     public List<GameCountDto> selectInformationList();
 
