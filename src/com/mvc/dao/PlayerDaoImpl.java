@@ -117,8 +117,26 @@ public class PlayerDaoImpl implements PlayerDao {
         sql.append(" game_count.infor_id, ");
         sql.append(" game_count.all_games_count, ");
         sql.append(" game_count.success_count, ");
+        sql.append(" information.player_name, ");
+        sql.append(" game_count.date, ");
+        sql.append(" game_count.game_status, ");
+        sql.append(" game_count.role_id, ");
+        sql.append(" game_count.all_werewolf_count, ");
+        sql.append(" game_count.success_werewolf_count, ");
+        sql.append(" game_count.all_prophet_count, ");
+        sql.append(" game_count.success_prophet_count, ");
+        sql.append(" game_count.all_witch_count, ");
+        sql.append(" game_count.success_witch_count, ");
+        sql.append(" game_count.all_hunter_count, ");
+        sql.append(" game_count.success_hunter_count, ");
+        sql.append(" game_count.all_civilian_count, ");
+        sql.append(" game_count.success_civilian_count, ");
         sql.append(" cast(avg((game_count.success_count)/(game_count.all_games_count)*100)as decimal(10,2)) as rate, ");
-        sql.append(" information.player_name ");
+        sql.append(" cast(avg((game_count.success_werewolf_count)/(game_count.all_werewolf_count)*100)as decimal(10,2)) as werewolfRate, ");
+        sql.append(" cast(avg((game_count.success_prophet_count)/(game_count.all_prophet_count)*100)as decimal(10,2)) as prophetRate, ");
+        sql.append(" cast(avg((game_count.success_witch_count)/(game_count.all_witch_count)*100)as decimal(10,2)) as witchRate, ");
+        sql.append(" cast(avg((game_count.success_hunter_count)/(game_count.all_hunter_count)*100)as decimal(10,2)) as hunterRate, ");
+        sql.append(" cast(avg((game_count.success_civilian_count)/(game_count.all_civilian_count)*100)as decimal(10,2)) as civilianRate ");
         sql.append(" FROM");
         sql.append("  game_count");
         sql.append("  LEFT JOIN");
@@ -335,16 +353,16 @@ public class PlayerDaoImpl implements PlayerDao {
         int successCount = playerModel.getSuccessCount();
         int allGamesCount = playerModel.getAllGamesCount();
         int inforId = Integer.valueOf(playerModel.getInforId());
-        int allWerewolfCount = 0;
-        int successWerewolfCount = 0;
-        int allProphetCount = 0;
-        int successProphetCount = 0;
-        int allWitchCount = 0;
-        int successWitchCount = 0;
-        int allHunterCount = 0;
-        int successHunterCount = 0;
-        int allCivilianCount = 0;
-        int successCivilianCount = 0;
+        int allWerewolfCount = playerModel.getAllWerewolfCount();
+        int successWerewolfCount = playerModel.getSuccessWerewolfCount();
+        int allProphetCount = playerModel.getAllProphetCount();
+        int successProphetCount = playerModel.getSuccessProphetCount();
+        int allWitchCount = playerModel.getAllWitchCount();
+        int successWitchCount = playerModel.getSuccessWitchCount();
+        int allHunterCount = playerModel.getAllHunterCount();
+        int successHunterCount = playerModel.getSuccessHunterCount();
+        int allCivilianCount = playerModel.getAllCivilianCount();
+        int successCivilianCount = playerModel.getSuccessCivilianCount();
         int roleId = Integer.valueOf(playerModel.getRoleId());
         String date = playerModel.getDate();
 
@@ -376,28 +394,28 @@ public class PlayerDaoImpl implements PlayerDao {
         allGamesCount = allGamesCount + 1;
 
         if (roleId == 1) {
-            allProphetCount = 1;
+            allProphetCount = allProphetCount + 1;
             if ("success".equals(gameStatus)) {
                 successProphetCount = 1;
             }
         }
 
         if (roleId == 2) {
-            allWitchCount = 1;
+            allWitchCount = allWitchCount + 1;
             if ("success".equals(gameStatus)) {
                 successWitchCount = 1;
             }
         }
 
         if (roleId == 3) {
-            allHunterCount = 1;
+            allHunterCount = allHunterCount + 1;
             if ("success".equals(gameStatus)) {
                 successHunterCount = 1;
             }
         }
 
         if (roleId == 4) {
-            allWerewolfCount = 1;
+            allWerewolfCount = allHunterCount + 1;
             if ("success".equals(gameStatus)) {
                 successWerewolfCount = 1;
             }
@@ -406,7 +424,7 @@ public class PlayerDaoImpl implements PlayerDao {
         if (roleId == 5) {
             allCivilianCount = 1;
             if ("success".equals(gameStatus)) {
-                successCivilianCount = 1;
+                successCivilianCount = allHunterCount + 1;
             }
         }
 
@@ -525,8 +543,25 @@ public class PlayerDaoImpl implements PlayerDao {
             gameCountDto.setAllGamesCount(rs.getInt("all_games_count"));
             gameCountDto.setSuccessCount(rs.getInt("success_count"));
             gameCountDto.setRate(rs.getFloat("rate"));
+            gameCountDto.setDate(rs.getDate("date"));
+            gameCountDto.setGamestatus(rs.getString("game_status"));
+            gameCountDto.setRoleId(rs.getInt("role_id"));
+            gameCountDto.setAllWerewolfCount(rs.getInt("all_werewolf_count"));
+            gameCountDto.setSuccessWerewolfCount(rs.getInt("success_werewolf_count"));
+            gameCountDto.setAllProphetCount(rs.getInt("all_prophet_count"));
+            gameCountDto.setSuccessProphetCount(rs.getInt("success_prophet_count"));
+            gameCountDto.setAllWitchCount(rs.getInt("all_witch_count"));
+            gameCountDto.setSuccessWitchCount(rs.getInt("success_witch_count"));
+            gameCountDto.setAllHunterCount(rs.getInt("all_hunter_count"));
+            gameCountDto.setSuccessHunterCount(rs.getInt("success_hunter_count"));
+            gameCountDto.setAllCivilianCount(rs.getInt("all_civilian_count"));
+            gameCountDto.setSuccessCivilianCount(rs.getInt("success_civilian_count"));
+            gameCountDto.setWerewolfRate(rs.getFloat("werewolfRate"));
+            gameCountDto.setProphetRate(rs.getFloat("prophetRate"));
+            gameCountDto.setWitchRate(rs.getFloat("witchRate"));
+            gameCountDto.setHunterRate(rs.getFloat("hunterRate"));
+            gameCountDto.setCivilianRate(rs.getFloat("civilianRate"));
             return gameCountDto;
         }
     }
-
 }

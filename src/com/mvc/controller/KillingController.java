@@ -77,8 +77,29 @@ public class KillingController {
         } else {
             int successCount = informationList.get(0).getSuccessCount();
             int allGamesCount = informationList.get(0).getAllGamesCount();
+            int allWerewolfCount = informationList.get(0).getAllWerewolfCount();
+            int successWerewolfCount = informationList.get(0).getSuccessWerewolfCount();
+            int allProphetCount = informationList.get(0).getAllProphetCount();
+            int successProphetCount = informationList.get(0).getSuccessProphetCount();
+            int allWitchCount = informationList.get(0).getAllWitchCount();
+            int successWitchCount = informationList.get(0).getSuccessWitchCount();
+            int allHunterCount = informationList.get(0).getAllHunterCount();
+            int successHunterCount = informationList.get(0).getSuccessHunterCount();
+            int allCivilianCount = informationList.get(0).getAllCivilianCount();
+            int successCivilianCount = informationList.get(0).getSuccessCivilianCount();
+
             playerModel.setSuccessCount(successCount);
             playerModel.setAllGamesCount(allGamesCount);
+            playerModel.setAllWerewolfCount(allWerewolfCount);
+            playerModel.setSuccessWerewolfCount(successWerewolfCount);
+            playerModel.setAllProphetCount(allProphetCount);
+            playerModel.setSuccessProphetCount(successProphetCount);
+            playerModel.setAllWitchCount(allWitchCount);
+            playerModel.setSuccessWitchCount(successWitchCount);
+            playerModel.setAllHunterCount(allHunterCount);
+            playerModel.setSuccessHunterCount(successHunterCount);
+            playerModel.setAllCivilianCount(allCivilianCount);
+            playerModel.setSuccessCivilianCount(successCivilianCount);
             playerService.updateInformation(playerModel);
         }
         List<PlayerDto> playerDtoList = playerService.selectPlayerList();

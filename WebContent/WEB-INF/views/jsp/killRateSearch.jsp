@@ -57,6 +57,6 @@
     </form>
   </div>
   <div style="padding-top: 30px;" id="p005PlayerRateSearch"></div>
-  <div id="p005InformationTable" style="width: 300px;"></div>
+  <div id="p005InformationTable" style="width: 1300px;"></div>
 </body>
 </html>

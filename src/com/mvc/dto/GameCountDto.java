@@ -8,7 +8,7 @@ public class GameCountDto {
     private int inforId;
     private int allGamesCount;
     private int successCount;
-    private String inforName=null;
+    private String inforName = null;
     private float rate;
     private Date date = null;
     private String gamestatus = null;
@@ -23,6 +23,11 @@ public class GameCountDto {
     private int successHunterCount;
     private int allCivilianCount;
     private int successCivilianCount;
+    private float werewolfRate=0;
+    private float prophetRate=0;
+    private float witchRate=0;
+    private float hunterRate=0;
+    private float civilianRate=0;
 
     public int getId() {
         return id;
@@ -174,6 +179,46 @@ public class GameCountDto {
 
     public void setSuccessCivilianCount(int successCivilianCount) {
         this.successCivilianCount = successCivilianCount;
+    }
+
+    public float getWerewolfRate() {
+        return werewolfRate;
+    }
+
+    public void setWerewolfRate(float werewolfRate) {
+        this.werewolfRate = werewolfRate;
+    }
+
+    public float getProphetRate() {
+        return prophetRate;
+    }
+
+    public void setProphetRate(float prophetRate) {
+        this.prophetRate = prophetRate;
+    }
+
+    public float getWitchRate() {
+        return witchRate;
+    }
+
+    public void setWitchRate(float witchRate) {
+        this.witchRate = witchRate;
+    }
+
+    public float getHunterRate() {
+        return hunterRate;
+    }
+
+    public void setHunterRate(float hunterRate) {
+        this.hunterRate = hunterRate;
+    }
+
+    public float getCivilianRate() {
+        return civilianRate;
+    }
+
+    public void setCivilianRate(float civilianRate) {
+        this.civilianRate = civilianRate;
     }
 
 }

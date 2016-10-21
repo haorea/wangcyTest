@@ -128,7 +128,42 @@ define([ "common" ], function(common) {
                 name: "rate",
                 text: "胜率",
                 fn: rateHandler
-            } ]
+            }, {
+                name: "allWerewolfCount",
+                text: "狼人场数",
+            }, {
+                name: "werewolfRate",
+                text: "狼人胜率",
+                fn: rateHandler
+            }, {
+                name: "allProphetCount",
+                text: "预言家场数",
+            }, {
+                name: "prophetRate",
+                text: "预言家胜率",
+                fn: rateHandler
+            }, {
+                name: "allWitchCount",
+                text: "女巫场数",
+            }, {
+                name: "witchRate",
+                text: "女巫胜率",
+                fn: rateHandler
+            }, {
+                name: "allHunterCount",
+                text: "猎人场数",
+            }, {
+                name: "hunterRate",
+                text: "猎人胜率",
+                fn: rateHandler
+            }, {
+                name: "allCivilianCount",
+                text: "平民场数",
+            }, {
+                name: "civilianRate",
+                text: "平民胜率",
+                fn: rateHandler
+            }]
         });
     }
 
