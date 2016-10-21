@@ -128,6 +128,24 @@ public class KillingController {
 
     }
 
+    /**
+     * 检索游戏记录查询
+     *
+     * @param playerModel
+     * @return
+     */
+    @RequestMapping(value = "playerRecordSearch", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> playerRecordSearch(@RequestBody PlayerModel playerModel) {
+
+        List<PlayerDto> playerListList = playerService.selectPlayerListByCondition(playerModel);
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("playerListList", playerListList);
+
+        return bulidReturnMap("ok", resultMap);
+
+    }
+
     public Map<String, Object> bulidReturnMap(String code, Object result) {
 
         Map<String, Object> returnMap = new HashMap<String, Object>();

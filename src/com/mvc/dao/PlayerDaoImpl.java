@@ -109,6 +109,71 @@ public class PlayerDaoImpl implements PlayerDao {
      * 检索胜率的记录
      */
     @Override
+    public List<PlayerDto> selectPlayerListByCondition(PlayerModel playerModel) {
+
+        List<Object> paramList = new ArrayList<Object>();
+        final StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT");
+        sql.append("  player.id, ");
+        sql.append(" player.infor_id, ");
+        sql.append(" player.date, ");
+        sql.append(" player.game_status, ");
+        sql.append(" information.player_name as inforName, ");
+        sql.append(" role.role as roleName, ");
+        sql.append(" player.role_id ");
+        sql.append(" FROM");
+        sql.append("  player");
+        sql.append("  LEFT JOIN");
+        sql.append("  information");
+        sql.append("  ON");
+        sql.append("  player.infor_id=information.id");
+        sql.append("  LEFT JOIN");
+        sql.append("  role");
+        sql.append("  ON");
+        sql.append("  player.role_id=role.id");
+        sql.append(" WHERE");
+        sql.append(" 1=1 ");
+
+        if (!StringUtils.isNullOrEmpty(playerModel.getInforId())) {
+            sql.append(" AND ");
+            sql.append("  player.infor_id=? ");
+            paramList.add(Integer.valueOf(playerModel.getInforId()));
+        }
+
+        if (!StringUtils.isNullOrEmpty(playerModel.getRoleId())) {
+            sql.append(" AND ");
+            sql.append("  player.role_id=? ");
+            paramList.add(Integer.valueOf(playerModel.getRoleId()));
+        }
+
+        if (!StringUtils.isNullOrEmpty(playerModel.getDate())) {
+            sql.append(" AND ");
+            sql.append("  player.date=? ");
+            paramList.add(playerModel.getDate());
+        }
+
+        if (!StringUtils.isNullOrEmpty(playerModel.getGameStatus())) {
+            sql.append(" AND ");
+            sql.append("  player.game_status=? ");
+            paramList.add(playerModel.getGameStatus());
+        }
+
+        sql.append(" order by player.id desc ");
+
+        System.out.println(sql.toString());
+        System.out.println(paramList);
+
+        List<PlayerDto> playerList = JdbcTemelate.query(sql.toString(), paramList.toArray(), new PlayerListRowMapper());
+
+        System.out.println(sql.toString());
+
+        return playerList;
+    }
+
+    /**
+     * 检索胜率的记录
+     */
+    @Override
     public List<GameCountDto> selectAllInformationList() {
 
         List<Object> paramList = new ArrayList<Object>();
@@ -200,7 +265,7 @@ public class PlayerDaoImpl implements PlayerDao {
         sql.append(" WHERE");
         sql.append(" 1=1 ");
 
-        if(!StringUtils.isNullOrEmpty(playerModel.getInforId())){
+        if (!StringUtils.isNullOrEmpty(playerModel.getInforId())) {
             sql.append(" AND ");
             sql.append(" game_count.infor_id=? ");
             paramList.add(playerModel.getInforId());
@@ -483,7 +548,7 @@ public class PlayerDaoImpl implements PlayerDao {
         }
 
         if (roleId == 5) {
-            allCivilianCount = 1;
+            allCivilianCount = allCivilianCount + 1;
             if ("success".equals(gameStatus)) {
                 successCivilianCount = allHunterCount + 1;
             }

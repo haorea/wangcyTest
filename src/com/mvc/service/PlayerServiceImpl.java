@@ -79,4 +79,9 @@ public class PlayerServiceImpl implements PlayerService {
         return playerDao.selectAllInformationListByCondition(playerModel);
     }
 
+    @Override
+    public List<PlayerDto> selectPlayerListByCondition(PlayerModel playerModel) {
+        return playerDao.selectPlayerListByCondition(playerModel);
+    }
+
 }
