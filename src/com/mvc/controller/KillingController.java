@@ -120,7 +120,7 @@ public class KillingController {
     @ResponseBody
     public Map<String, Object> gameCountSearch(@RequestBody PlayerModel playerModel) {
 
-        List<GameCountDto> informationDtoList = playerService.selectInformationList();
+        List<GameCountDto> informationDtoList = playerService.selectInformationListByCondition(playerModel);
         Map<String, Object> resultMap = new HashMap<String, Object>();
         resultMap.put("informationDtoList", informationDtoList);
 

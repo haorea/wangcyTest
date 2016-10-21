@@ -18,5 +18,6 @@ public interface PlayerDao {
     public void insertInformation(PlayerModel playerModel);
     public void updateInformation(PlayerModel playerModel);
     public List<GameCountDto> selectAllInformationList();
+    public List<GameCountDto> selectAllInformationListByCondition(PlayerModel playerModel);
 
 }

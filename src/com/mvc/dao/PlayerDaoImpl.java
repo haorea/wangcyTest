@@ -15,6 +15,7 @@ import com.mvc.dto.InformationDto;
 import com.mvc.dto.PlayerDto;
 import com.mvc.dto.RoleDto;
 import com.mvc.model.PlayerModel;
+import com.mysql.jdbc.StringUtils;
 
 @Repository
 public class PlayerDaoImpl implements PlayerDao {
@@ -145,6 +146,66 @@ public class PlayerDaoImpl implements PlayerDao {
         sql.append("  game_count.infor_id=information.id");
         sql.append(" WHERE");
         sql.append(" 1=1 ");
+        sql.append(" group by information.player_name ");
+        sql.append(" order by game_count.id asc ");
+
+        System.out.println(sql.toString());
+
+        List<GameCountDto> playerList = JdbcTemelate.query(sql.toString(), paramList.toArray(), new GameCountRowMapper());
+
+        System.out.println(sql.toString());
+
+        return playerList;
+    }
+
+    /**
+     * 检索胜率的记录
+     */
+    @Override
+    public List<GameCountDto> selectAllInformationListByCondition(PlayerModel playerModel) {
+
+        List<Object> paramList = new ArrayList<Object>();
+        final StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT");
+        sql.append("  game_count.id, ");
+        sql.append(" game_count.infor_id, ");
+        sql.append(" game_count.all_games_count, ");
+        sql.append(" game_count.success_count, ");
+        sql.append(" information.player_name, ");
+        sql.append(" game_count.date, ");
+        sql.append(" game_count.game_status, ");
+        sql.append(" game_count.role_id, ");
+        sql.append(" game_count.all_werewolf_count, ");
+        sql.append(" game_count.success_werewolf_count, ");
+        sql.append(" game_count.all_prophet_count, ");
+        sql.append(" game_count.success_prophet_count, ");
+        sql.append(" game_count.all_witch_count, ");
+        sql.append(" game_count.success_witch_count, ");
+        sql.append(" game_count.all_hunter_count, ");
+        sql.append(" game_count.success_hunter_count, ");
+        sql.append(" game_count.all_civilian_count, ");
+        sql.append(" game_count.success_civilian_count, ");
+        sql.append(" cast(avg((game_count.success_count)/(game_count.all_games_count)*100)as decimal(10,2)) as rate, ");
+        sql.append(" cast(avg((game_count.success_werewolf_count)/(game_count.all_werewolf_count)*100)as decimal(10,2)) as werewolfRate, ");
+        sql.append(" cast(avg((game_count.success_prophet_count)/(game_count.all_prophet_count)*100)as decimal(10,2)) as prophetRate, ");
+        sql.append(" cast(avg((game_count.success_witch_count)/(game_count.all_witch_count)*100)as decimal(10,2)) as witchRate, ");
+        sql.append(" cast(avg((game_count.success_hunter_count)/(game_count.all_hunter_count)*100)as decimal(10,2)) as hunterRate, ");
+        sql.append(" cast(avg((game_count.success_civilian_count)/(game_count.all_civilian_count)*100)as decimal(10,2)) as civilianRate ");
+        sql.append(" FROM");
+        sql.append("  game_count");
+        sql.append("  LEFT JOIN");
+        sql.append("  information");
+        sql.append("  ON");
+        sql.append("  game_count.infor_id=information.id");
+        sql.append(" WHERE");
+        sql.append(" 1=1 ");
+
+        if(!StringUtils.isNullOrEmpty(playerModel.getInforId())){
+            sql.append(" AND ");
+            sql.append(" game_count.infor_id=? ");
+            paramList.add(playerModel.getInforId());
+        }
+
         sql.append(" group by information.player_name ");
         sql.append(" order by game_count.id asc ");
 

@@ -23,32 +23,6 @@
           </td>
         </tr>
         <tr>
-          <th>玩家角色</th>
-          <td>
-            <select style="width: 200px" id="p005RoleSelect" name="roleId">
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <th>日期</th>
-          <td>
-            <input id="p005Date" name="date" type="text" style="width: 200px" />
-          </td>
-        </tr>
-        <tr>
-          <th>胜负状况</th>
-          <td>
-            <input type="radio" name="gameStatus" value="" checked="checked" id="p005A;;Radio" />
-            <label>所有</label>
-            <input type="radio" name="gameStatus" value="equal" id="p005EqualRadio" />
-            <label>平</label>
-            <input type="radio" name="gameStatus" value="success" id="p005SuccessRadio" />
-            <label>胜利</label>
-            <input type="radio" name="gameStatus" value="fail" id="p005FailRadio" />
-            <label>失败</label>
-          </td>
-        </tr>
-        <tr>
           <td>
             <button type="button" id="p005SearchBtn">查询</button>
           </td>

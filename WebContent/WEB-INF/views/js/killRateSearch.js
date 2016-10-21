@@ -3,8 +3,6 @@ define([ "common" ], function(common) {
     function init() {
 
         initStatus();
-        initDate();
-        initFormValidate();
         initListener();
     }
     ;
@@ -25,17 +23,11 @@ define([ "common" ], function(common) {
             success: function(data) {
 
                 var option = $("<option value=''></option>").text("所有人");
-                var rateOption = $("<option value=''></option>").text("所有角色");
                 option.appendTo($("#p005PlayerNameSelect"));
-                rateOption.appendTo($("#p005RoleSelect"));
                 if (data.code == "ok") {
                     for (var i = 0; i < data.result.informationDtoList.length; i++) {
                         option = $("<option></option>").text(data.result.informationDtoList[i].playerName).val(data.result.informationDtoList[i].id);
                         $("#p005PlayerNameSelect").append(option);
-                    }
-                    for (var j = 0; j < data.result.roleDtoList.length; j++) {
-                        rateOption = $("<option></option>").text(data.result.roleDtoList[j].role).val(data.result.roleDtoList[j].id);
-                        $("#p005RoleSelect").append(rateOption);
                     }
 
                     // 胜率一览
@@ -46,39 +38,8 @@ define([ "common" ], function(common) {
                 }
             }
         });
-
     }
 
-    /**
-     * 日期
-     */
-    function initDate() {
-        $("#p005Date").datepicker("option", $.datepicker.regional['zh-CN']);
-        $("#p005Date").datepicker({
-            changeMonth: true,
-            changeYear: true,
-            dateFormat: "yy/mm/dd",
-        });
-        $("#p005Date").datepicker('setDate', new Date());
-    }
-
-    /**
-     * 校验
-     */
-    function initFormValidate() {
-        $("#p005KillRateSearchForm").validate({
-            rules: {
-                date: {
-                    date: true
-                }
-            },
-            messages: {
-                date: {
-                    date: "请输入合法日期"
-                }
-            }
-        });
-    }
 
     /**
      * 按钮
@@ -90,6 +51,7 @@ define([ "common" ], function(common) {
             $("#p005PlayerRateSearch").text("");
             $("#p005PlayerRateSearch").text("玩家胜率查询");
             var inforMationParam = {};
+            inforMationParam["inforId"]=$("#p005PlayerNameSelect").val();
             $.ajax({
                 url: "/" + getContextPath() + "/gameCountSearch",
                 type: "POST",
@@ -105,7 +67,6 @@ define([ "common" ], function(common) {
                 }
             });
         });
-
     }
 
     /**

@@ -26,4 +26,6 @@ public interface PlayerService {
 
     public List<GameCountDto> selectInformationList();
 
+    public List<GameCountDto> selectInformationListByCondition(PlayerModel playerModel);
+
 }
