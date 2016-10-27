@@ -56,12 +56,16 @@
       <a href="javascript:void(0)" data-pagename="ssq">双色球</a>
     </div>
     <div class="menu">狼人杀</div>
+     <div class="subMenu">
+      <a href="javascript:void(0)" data-pagename="killerAdd">玩家信息录入</a>
+    </div>
     <div class="subMenu">
       <a href="javascript:void(0)" data-pagename="killing">狼人杀录入</a>
     </div>
     <div class="subMenu">
       <a href="javascript:void(0)" data-pagename="killRateSearch">狼人杀胜率检索</a>
     </div>
+
   </div>
 
 

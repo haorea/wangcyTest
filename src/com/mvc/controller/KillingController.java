@@ -15,6 +15,7 @@ import com.mvc.dto.GameCountDto;
 import com.mvc.dto.InformationDto;
 import com.mvc.dto.PlayerDto;
 import com.mvc.dto.RoleDto;
+import com.mvc.model.InformationModel;
 import com.mvc.model.PlayerModel;
 import com.mvc.service.PlayerService;
 
@@ -32,6 +33,11 @@ public class KillingController {
     @RequestMapping(value = "/killRateSearch")
     public String killRateSearch() {
         return "killRateSearch";
+    }
+
+    @RequestMapping(value = "/killerAdd")
+    public String killerAdd() {
+        return "killerAdd";
     }
 
     /**
@@ -60,7 +66,27 @@ public class KillingController {
     }
 
     /**
-     * 新增player信息
+     * 新增玩家信息
+     *
+     * @param studentModel
+     * @return
+     */
+    @RequestMapping(value = "/killerAddInit", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> killerAddInit(@RequestBody InformationModel informationModel) {
+
+
+        playerService.addKiller(informationModel);
+
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+
+
+        return bulidReturnMap("ok", null);
+
+    }
+
+    /**
+     * 新增游戏记录
      *
      * @param playerModel
      * @return
