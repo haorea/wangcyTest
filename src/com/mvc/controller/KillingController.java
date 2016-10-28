@@ -1,15 +1,24 @@
 package com.mvc.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mvc.dto.GameCountDto;
 import com.mvc.dto.InformationDto;
@@ -75,11 +84,9 @@ public class KillingController {
     @ResponseBody
     public Map<String, Object> killerAddInit(@RequestBody InformationModel informationModel) {
 
-
         playerService.addKiller(informationModel);
 
         Map<String, Object> resultMap = new HashMap<String, Object>();
-
 
         return bulidReturnMap("ok", null);
 
@@ -167,6 +174,55 @@ public class KillingController {
         List<PlayerDto> playerListList = playerService.selectPlayerListByCondition(playerModel);
         Map<String, Object> resultMap = new HashMap<String, Object>();
         resultMap.put("playerListList", playerListList);
+
+        return bulidReturnMap("ok", resultMap);
+
+    }
+
+    /**
+     * 头像上传
+     *
+     * @param playerModel
+     * @return
+     * @throws IOException
+     * @throws FileUploadException
+     */
+    @RequestMapping(value = "upload", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> upload(HttpServletRequest request, HttpServletResponse response, MultipartFile file) throws IOException, FileUploadException {
+        String filename = file.getOriginalFilename();
+        String projpath = "";
+        projpath = request.getSession().getServletContext().getRealPath("/WEB-INF/views/upload");
+        String responseString = filename;
+
+        if (ServletFileUpload.isMultipartContent(request)) {
+
+            File savedFile = new File(projpath, filename);
+
+            if (savedFile.exists()) {
+                savedFile.delete();
+            }
+
+            if (!savedFile.exists()) {
+                savedFile.mkdirs();
+            }
+
+            // 保存
+            try {
+                file.transferTo(savedFile);
+            } catch (IllegalStateException | IOException e) {
+                e.printStackTrace();
+            }
+
+            byte[] responseBytes = responseString.getBytes();
+            response.setContentLength(responseBytes.length);
+            ServletOutputStream output = response.getOutputStream();
+            output.write(responseBytes);
+            output.flush();
+
+        }
+
+        Map<String, Object> resultMap = new HashMap<String, Object>();
 
         return bulidReturnMap("ok", resultMap);
 
