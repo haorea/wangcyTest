@@ -93,20 +93,19 @@
   <div style="padding-top: 30px;" id="p005PlayerRateSearch"></div>
   <div id="p005InformationTable" style="width: 1300px;"></div>
   <div id="p005PlayerTable" style="width: 381px; display: none;"></div>
-
-  <div class="col-sm-6" id="p005chartGraphDiv">
-    <div class="ibox float-e-margins">
-      <div class="ibox-title">
-        <h5>饼状图</h5>
-      </div>
-      <div class="ibox-content">
-        <div class="flot-chart">
-          <div class="flot-chart-content" id="flot-pie-chart"></div>
+  <div class="row">
+    <div class="col-sm-6" id="p005chartGraphDiv">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>饼状图</h5>
+        </div>
+        <div class="ibox-content">
+          <div class="flot-chart" style="height: 200px; width: 1654px">
+            <div class="flot-chart-content" id="flot-pie-chart"></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
-
 </body>
 </html>

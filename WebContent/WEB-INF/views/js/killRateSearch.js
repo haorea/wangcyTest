@@ -228,7 +228,6 @@ define([ "common" ], function(common) {
                         if (data.code == "ok") {
                             var chartGraphList = data.result.chartGraphList;
                             initChartGraph(chartGraphList);
-
                         }
                     }
                 });
@@ -446,15 +445,24 @@ define([ "common" ], function(common) {
         };
 
         var e = [];
-        var sColor = [ '#00FA9A', '#1E90FF', '#FAFAD2', '#E0FFFF', '#00FFFF' ]
-        $.each(chartGraphList, function(index, item) {
-            e.push({
-                label: item.role,
-                data: item.npl,
-                color: sColor[index]
+        var a = 0;
+        for (var i = 0; i < chartGraphList.length; i++) {
+            a += chartGraphList[i].npl;
+        }
+        if (a == 0) {
+            $("#flot-pie-chart").hide();
+            alert("此用户无数据");
+        } else {
+            $("#flot-pie-chart").show();
+            var sColor = [ '#FF0000', '#800080', '#00FA9A', '#1E90FF', '#FAFAD2' ]
+            $.each(chartGraphList, function(index, item) {
+                e.push({
+                    label: item.role,
+                    data: item.npl,
+                    color: sColor[index]
+                });
             });
-        });
-
+        }
         $.plot($("#flot-pie-chart"), e, options)
 
     }
