@@ -14,3 +14,7 @@ http://blog.csdn.net/qq_27194467/article/details/51576600
 
 layui也不错
 http://www.layui.com/demo/form.html
+
+
+还有个zui也挺强大
+http://zui.sexy/#/
