@@ -10,3 +10,7 @@ http://www.zi-han.net/theme/hplus/
 http://blog.csdn.net/qq_27194467/article/details/51576600
 
 饼图和柱状图还有折线图就是参照的flot插件
+
+
+layui也不错
+http://www.layui.com/demo/form.html
