@@ -18,4 +18,4 @@ http://www.layui.com/demo/form.html
 
 还有个zui也挺强大
 http://zui.sexy/#/
-#访问地址http://localhost/wangcyTest/
+#访问地址http://localhost:8080/wangcyTest/login
