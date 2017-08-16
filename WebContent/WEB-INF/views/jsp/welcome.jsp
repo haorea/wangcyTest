@@ -56,7 +56,7 @@
           style="width: 300px; height: 100px; margin-left: 70px;">
       </div>
       <div style="display: inline-block; float: right; padding-right: 30px; padding-top: 20px;">
-        <a href="javascript:;"> <img src="<%=basePath%>/images/home/close.png" id="p003BackLoginBtn" /></a>
+        <a href="javascript:;" target="_self"> <img src="<%=basePath%>/images/home/close.png" id="p003BackLoginBtn" /></a>
       </div>
       <div style="display: inline-block; float: right; color: blue; padding-top: 10px; padding-left: 40px;">
         <p id="dateTimeShow"
