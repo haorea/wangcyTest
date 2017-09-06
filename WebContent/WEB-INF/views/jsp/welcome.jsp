@@ -32,6 +32,7 @@
 <link type="text/css" href="<%=basePath%>/css/top.css" rel="stylesheet" />
 <link type="text/css" href="<%=basePath%>/css/userAdd.css" rel="stylesheet" />
 <link type="text/css" href="<%=basePath%>/css/killerAdd.css" rel="stylesheet" />
+<link type="text/css" href="<%=basePath%>/css/forum.css" rel="stylesheet" />
 <link href="<%=basePath%>/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
 <link href="<%=basePath%>/css/animate.min.css" rel="stylesheet">
 <link href="<%=basePath%>/css/style.min.css?v=4.0.0" rel="stylesheet">
@@ -87,13 +88,16 @@
     <div class="subMenu">
       <a href="javascript:void(0)" data-pagename="barGraph">狼人杀柱状图</a>
     </div>
-
     <div class="subMenu">
       <a href="javascript:void(0)" data-pagename="pieGraph">个人饼图查询</a>
     </div>
 
     <div class="subMenu">
       <a href="javascript:void(0)" data-pagename="lineGraph">狼人杀折线图</a>
+    </div>
+    <div class="menu">论坛中心</div>
+    <div class="subMenu">
+      <a href="javascript:void(0)" data-pagename="forum">论坛</a>
     </div>
   </div>
 
