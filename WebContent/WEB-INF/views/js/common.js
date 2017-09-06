@@ -16,7 +16,6 @@ define([ "userAdd", "ssq", "killing", "killRateSearch", "killerAdd", "barGraph",
         $.ajax({
             url: url,
             dataType: "html"
-
         }).done(function(htmlContent) {
             $("#p002WelcomeDiv").html(htmlContent);
             if (pagename == "userAdd") {

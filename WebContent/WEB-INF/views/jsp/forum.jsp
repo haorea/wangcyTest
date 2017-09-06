@@ -19,7 +19,7 @@
   <table border="0" height="85" width="100%">
     <tr>
       <td width="10%">
-       <a href=""/> <img src="" width="73" height="73"></a>
+       <a href=""/> <img src="" width="73" height="73" target="_self"></a>
       </td>
       <td width="35%" style="text-align:left; padding-left:10px;"><a href=""/></a></td>
       <td width="20%">56</td>
