@@ -23,7 +23,6 @@ define([ "common" ], function(common) {
                 var forumList =data.result.forumList;
                 for(var i = 0; i<forumList.length;i++){
                     var forumItem = forumList[i];
-                    console.log(forumItem);
                     html += "<div class='box'><table border='0' height='85' width='100%'><tr>";
                     html += "<input type='hidden' id='bk' value='"+ forumItem.bkid +"'/><input type='hidden' id='bz' value='"+ forumItem.bkid+"'/>";
                     html += "<td width='10%' style='text-align:center;'><a style='text-decoration:none'><img src='" + BkImg + "' width='73' height='73'></a></td>";
