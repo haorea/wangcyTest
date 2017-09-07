@@ -67,37 +67,40 @@
   </div>
 
   <div class="left">
-    <div class="menu">基本信息</div>
+
+    <!-- 菜单项目区域 --><div id="menu_container" style="overflow-y:auto;"></div>
+
+    <div class="menu" id="userInformationMenu">基本信息</div>
     <div class="subMenu">
-      <a href="javascript:void(0)" data-pagename="userAdd" target="_self">学生信息</a>
+      <a href="javascript:void(0)" data-pagename="userAdd" target="_self" style="display:none" id="userAddSubMenu">学生信息</a>
     </div>
-    <div class="menu">双色球</div>
+    <div class="menu" id="ssqMenu">双色球</div>
     <div class="subMenu">
-      <a href="javascript:void(0)" data-pagename="ssq" target="_self">双色球</a>
+      <a href="javascript:void(0)" data-pagename="ssq" target="_self"  style="display:none" id="ssqSubMenu">双色球</a>
     </div>
-    <div class="menu">狼人杀</div>
+    <div class="menu" id="werewolfMenu">狼人杀</div>
     <div class="subMenu">
-      <a href="javascript:void(0)" data-pagename="killerAdd" target="_self">玩家信息录入</a>
-    </div>
-    <div class="subMenu">
-      <a href="javascript:void(0)" data-pagename="killing" target="_self">狼人杀录入</a>
-    </div>
-    <div class="subMenu">
-      <a href="javascript:void(0)" data-pagename="killRateSearch" target="_self">狼人杀记录查询</a>
+      <a href="javascript:void(0)" data-pagename="killerAdd" target="_self"  style="display:none" id="killerSubMenu">玩家信息录入</a>
     </div>
     <div class="subMenu">
-      <a href="javascript:void(0)" data-pagename="barGraph" target="_self">狼人杀柱状图</a>
+      <a href="javascript:void(0)" data-pagename="killing" target="_self"  style="display:none" id="killAddSubMenu">狼人杀录入</a>
     </div>
     <div class="subMenu">
-      <a href="javascript:void(0)" data-pagename="pieGraph" target="_self">个人饼图查询</a>
+      <a href="javascript:void(0)" data-pagename="killRateSearch" target="_self"  style="display:none"id="killRateSearchSubMenu">狼人杀记录查询</a>
+    </div>
+    <div class="subMenu">
+      <a href="javascript:void(0)" data-pagename="barGraph" target="_self"  style="display:none" id="barGraphSubMenu">狼人杀柱状图</a>
+    </div>
+    <div class="subMenu">
+      <a href="javascript:void(0)" data-pagename="pieGraph" target="_self"  style="display:none" id="pieGraphSubMenu">个人饼图查询</a>
     </div>
 
     <div class="subMenu">
-      <a href="javascript:void(0)" data-pagename="lineGraph" target="_self">狼人杀折线图</a>
+      <a href="javascript:void(0)" data-pagename="lineGraph" target="_self"  style="display:none" id="lineGraphSubMenu">狼人杀折线图</a>
     </div>
-    <div class="menu">论坛中心</div>
+    <div class="menu"id="forumMenu">论坛中心</div>
     <div class="subMenu">
-      <a href="javascript:void(0)" data-pagename="forum" target="_self">论坛</a>
+      <a href="javascript:void(0)" data-pagename="forum" target="_self"  style="display:none" id="forumSubMenu">论坛</a>
     </div>
   </div>
 
