@@ -1,8 +1,12 @@
 require.config({
-    paths: {}
+    "common": "common",
+    paths: {
+
+    }
 });
 
-require([ "welcome", "userAdd", "result", "ssq", "datatable", "killing", "killerAdd", "forum" ], function(welcome, userAdd, result, ssq, datatable, killing, killerAdd, forum) {
+require([ "welcome", "userAdd", "result", "ssq", "datatable", "killing", "killerAdd", "forum", "forumTheme" ],
+        function(welcome, userAdd, result, ssq, datatable, killing, killerAdd, forum,forumTheme) {
     $(function() {
         welcome.init();
         userAdd.init();
@@ -10,6 +14,8 @@ require([ "welcome", "userAdd", "result", "ssq", "datatable", "killing", "killer
         ssq.init();
         datatable.extend();
         killing.init();
+        killerAdd.init();
         forum.init();
+        forumTheme.init();
     });
 });

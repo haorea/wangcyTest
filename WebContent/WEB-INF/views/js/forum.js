@@ -1,4 +1,4 @@
-define([ "common" ], function(common) {
+define(["common"], function(common) {
 
     function init() {
         getBkInfo();
@@ -23,7 +23,7 @@ define([ "common" ], function(common) {
                 var forumList =data.result.forumList;
                 for(var i = 0; i<forumList.length;i++){
                     var forumItem = forumList[i];
-                    html += "<div class='box'><table border='0' height='85' width='100%'><tr>";
+                    html += "<div class='box'><table border='0' height='85' width='100%'><tr class='trThemeClick'>";
                     html += "<input type='hidden' id='bk' value='"+ forumItem.bkid +"'/><input type='hidden' id='bz' value='"+ forumItem.bkid+"'/>";
                     html += "<td width='10%' style='text-align:center;'><a style='text-decoration:none'><img src='" + BkImg + "' width='73' height='73'></a></td>";
                     html += "<td width='35%' style='text-align:left; padding-left:10px;'><a href='javascript:void(0)' style='text-decoration:none;color: #666;' target='_self' >"+ forumItem.bkname +"</a></td>";
@@ -34,14 +34,47 @@ define([ "common" ], function(common) {
                     html += " </tr></table></div>";
                 }
                 $formHtml.html(html);
-
+                trThemeClick();
                 }
             }
 
         });
+    }
 
+    function trThemeClick() {
+
+
+        $(".trThemeClick").off("click").on("click",function(){
+            var bkid = $(this).find("#bk").val();
+
+            var pageName = "forumTheme";
+            common.loadPage(pageName);
+
+//            $.ajax({
+//                url:"/" + getContextPath() + "/forumZT",
+//                type: "POST",
+//                data:JSON.stringify({
+//                    "bkid": bkid
+//                }),
+//                contentType:"application/json",
+//                dataType:"json",
+//                cache:false,
+//                success:function(data){
+//
+//                    if (data.code == "ok") {
+//
+//                       var forumZTHFList = data.result.forumZTHFList;
+//
+//                    }
+//
+//
+//                }
+//            });
+
+        });
 
     }
+
     /**
      * 取路径
      */

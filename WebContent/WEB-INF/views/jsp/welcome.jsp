@@ -30,6 +30,7 @@
 <link type="text/css" href="<%=basePath%>/css/userAdd.css" rel="stylesheet" />
 <link type="text/css" href="<%=basePath%>/css/killerAdd.css" rel="stylesheet" />
 <link type="text/css" href="<%=basePath%>/css/forum.css" rel="stylesheet" />
+<link type="text/css" href="<%=basePath%>/css/forumTheme.css" rel="stylesheet" />
 <link href="<%=basePath%>/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
 <link href="<%=basePath%>/css/animate.min.css" rel="stylesheet">
 <link href="<%=basePath%>/css/style.min.css?v=4.0.0" rel="stylesheet">
@@ -45,6 +46,7 @@
 <script src="<%=basePath%>/js/jquery-ui.min.js" type="text/JavaScript"></script>
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
 <script data-main="<%=basePath%>/js/main" src="<%=basePath%>/js/require.js"></script>
+
 <title>SpringMvc</title>
 </head>
 <body>

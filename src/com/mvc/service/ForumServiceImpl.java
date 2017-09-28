@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.mvc.dao.ForumDao;
 import com.mvc.dto.ForumDto;
+import com.mvc.dto.ZTHFDto;
 
 @Service
 public class ForumServiceImpl implements ForumService{
@@ -16,6 +17,11 @@ public class ForumServiceImpl implements ForumService{
     @Override
     public List<ForumDto> selectForum() {
         return forumDao.selectAllForums();
+    }
+
+    @Override
+    public List<ZTHFDto> selectForumThemeResponse(int bkid) {
+        return forumDao.selectAllResponse(bkid);
     }
 
 }

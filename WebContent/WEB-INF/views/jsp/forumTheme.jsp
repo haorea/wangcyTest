@@ -5,9 +5,9 @@
 <html lang="ja">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" href="${baseUrl}css/common.css" rel="stylesheet" />
 <title>论坛首页</title>
 </head>
-
 <body class="gray-bg">
 <div class="nav">
   <div class="nav1">版块</div>

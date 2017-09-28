@@ -1,59 +1,31 @@
 /**
  *
  */
-define([ "userAdd", "ssq", "killing", "killRateSearch", "killerAdd", "barGraph", "pieGraph", "lineGraph", "forum" ], function(userAdd, ssq, killing, killRateSearch, killerAdd, barGraph, pieGraph,lineGraph, forum) {
-
-    function init() {
-        loadPage();
-    }
+define([],function() {
 
     /**
      * ページ遷移メソッド
      */
-    function loadPage(pagename) {
+    function loadPage() {
 
-        var url = "/" + getContextPath() + "/" + pagename;
+        var args = Array.prototype.slice.call(arguments);
+        var pageName = args.shift();
+
+        var url = "/" + getContextPath() + "/" + pageName ;
         $.ajax({
             url: url,
             dataType: "html"
         }).done(function(htmlContent) {
             $("#p002WelcomeDiv").html(htmlContent);
-            if (pagename == "userAdd") {
-                userAdd.init();
-            }
-
-            if (pagename == "ssq") {
-                ssq.init();
-            }
-
-            if (pagename == "killing") {
-                killing.init();
-            }
-            if (pagename == "killRateSearch") {
-                killRateSearch.init();
-            }
-
-            if (pagename == "killerAdd") {
-                killerAdd.init();
-            }
-            if (pagename == "barGraph") {
-                barGraph.init();
-            }
-
-            if (pagename == "pieGraph") {
-                pieGraph.init();
-            }
-
-            if (pagename == "lineGraph") {
-                lineGraph.init();
-            }
-            if (pagename == "forum") {
-                forum.init();
-            }
+            initPage(pageName, args);
 
         })
     }
-
+    function initPage(pageModuleName, args) {
+        require([ pageModuleName ], function(pageModule) {
+            pageModule.init.apply(this, args);
+        });
+    }
     function getContextPath() {
         var fullPath = window.location.pathname;
         var contextPath = fullPath.split("/")[1];

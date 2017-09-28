@@ -5,7 +5,8 @@
     init();
 });*/
 
-define([ "common", "userAdd", "ssq", "killing", "killRateSearch", "killerAdd","barGraph" ,"pieGraph","lineGraph", "forum"], function(common, userAdd, ssq, killing, killRateSearch,killerAdd,barGraph,pieGraph,lineGraph, forum) {
+define([ "common", "userAdd", "ssq", "killing", "killRateSearch", "killerAdd","barGraph" ,"pieGraph","lineGraph", "forum", "forumTheme"],
+        function(common, userAdd, ssq, killing, killRateSearch,killerAdd,barGraph,pieGraph,lineGraph, forum, forumTheme) {
 
     function init() {
         initParams();
