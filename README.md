@@ -19,3 +19,13 @@ http://www.layui.com/demo/form.html
 还有个zui也挺强大
 http://zui.sexy/#/
 #访问地址http://localhost:8080/wangcyTest/login
+
+
+
+分页一览组件可以用 mmgrid
+
+
+可以用xmapp自带的数据 进行编程
+我们当前表配置的地址就是xmapp自带数据库
+自带数据库需要新建一个 用户 在user表里面
+ grant all privileges on vtdc.* to dev@localhost identified by '123456';加入权限
